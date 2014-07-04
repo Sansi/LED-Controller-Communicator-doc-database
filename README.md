@@ -1,15 +1,7 @@
-xelatex-template
-================
+# StarRiver 数据库设计
 
-XeLaTeX template for Chinese documents.
+本文档描述 LED 灯具控制系统 StarRiver 的数据库设计。
 
-## Files
+如有疑问请联系：
 
-* `main.tex`: run `xelatex` on this and you get the PDF.
-* `title.tex`: change document title & author here
-* `content.tex`: include sections here.
-* `content/*.tex`: each contains text for a section. Note that they are include in the output only if they appear in `content.tex`.
-
-## Notes
-
-You might want to change the fonts if you encounter some "font missing" error. Change font settings in lines following `\usepackage{fontspec}` in `main.tex`.
+卿培 qingpei@sansitech.com
