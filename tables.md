@@ -4,7 +4,7 @@
 
 ## SystemConfig
 
-|字段名|类型|含义|备注|
+| 字段名 | 类型 | 含义 | 备注 |
 | -- | -- | -- | -- |
 |idSystemConfig|int unsigned AUTO_INCREMENT|||
 |NetworkMode|tinyint unsigned|通信程序角色|0: 服务器, 1: 客户端。考虑同时作为多种角色与不同控制器通信的需求|
