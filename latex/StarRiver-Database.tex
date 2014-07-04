@@ -18,10 +18,10 @@
 \usepackage[unicode=true,colorlinks,linkcolor=blue]{hyperref} % 超链接
 
 \usepackage{fontspec}
-\setCJKmainfont[BoldFont=FZLanTingHeiS-R-GB]{FZNewShuSong-Z10}   	% 设置缺省中文字体
-\setmainfont{Fontin}   					% 英文衬线字体
-\setmonofont{Consolas}   				% 英文等宽字体
-\setsansfont{Fontin Sans CR} 			% 英文无衬线字体
+\setCJKmainfont[Path=fonts/, BoldFont=FZLanTingHeiS-B-GB, ItalicFont=FZCuKaiS-R-GB]{FZNewShuSong-Z10}       % 设置缺省中文字体
+\setmainfont[Path=fonts/, BoldFont=Fontin-Bold, ItalicFont=Fontin-Italic]{Fontin-Regular}                       % 英文衬线字体
+\setmonofont[Path=fonts/]{Deja Vu Sans Mono}                % 英文等宽字体
+\setsansfont[Path=fonts/, BoldFont=Roboto-Bold, ItalicFont=Roboto-Italic]{Roboto-Regular}           % 英文无衬线字体
 
 \usepackage{graphicx}        			% 嵌入png图像
 \usepackage{longtable,tabu,booktabs}
