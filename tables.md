@@ -4,8 +4,8 @@
 
 ## SystemConfig
 
-|字段名|类型|含义|备注|
-|--|--|--|--|
+| 字段名 | 类型 | 含义 | 备注 |
+| --- | --- | --- | --- |
 |idSystemConfig|int unsigned AUTO_INCREMENT|||
 |NetworkMode|tinyint unsigned|通信程序角色|0: 服务器, 1: 客户端。考虑同时作为多种角色与不同控制器通信的需求|
 |NetworkPort| smallint unsigned| 服务器侦听端口||
@@ -28,7 +28,7 @@
 ## User
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idUser|int unsigned|||
 |Username|varchar(64)| ||
 |MD5| varchar(40) |MD5(username+password)|128-bit, 32 digits long hex string|
@@ -38,14 +38,14 @@
 默认分配如下两个用户：
 
 |idUser|Username|备注|
-|--|--|--|
+| --- | --- | --- |
 |0| comm|通信程序|
 |1| admin| 管理员|
 
 ## Controller
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|||
 |Name|varchar(128)|||
 |MAC| binary(8)| 8字节控制器地址||
@@ -64,7 +64,7 @@
 状态量不支持查询的话对应字段写 `NULL`。
 
 |字段名 |类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController||
 |CommState| tinyint unsigned |通信状态|0: 正常, 1: 故障|
 |LoginState|tinyint unsigned |是否已注册到通信程序服务端| 0: 未注册, 1: 已注册|
@@ -84,7 +84,7 @@
 记录控制器状态变化。
 
 |字段名 |类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController |PK1|
 |field| varchar(32) |被修改的字段名| PK2|
 |field_value |varchar(255)|变化后的字段值 |
@@ -100,7 +100,7 @@
 查询时控计划时把结果放到这张表里，将原来该控制器的删掉，再重新插入。
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID||
 |idController|int unsigned|Controller.idController ||
 |Item|varchar(128)|时间亮度表的一项|上海：MM, DD, MM, DD, HH, mm, ss, Addr, mode, value (逗号后不加空格)|
@@ -112,7 +112,7 @@
 删除手机号是把所有的手机号删除，不能只删除其中的一个。
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID||
 |idController|int unsigned|Controller.idController ||
 |Cell|varchar(20) |一个手机号| 不支持国家代码|
@@ -122,7 +122,7 @@
 从控制器里面读回来的短信内容放在这张表里面。
 
 |字段名 |类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController| PK1|
 |SmsIndex|smallint unsigned|短信在设备中的序号| PK2|
 |SmsContent|varchar(450)||UTF8|
@@ -132,7 +132,7 @@
 从控制器里面读回来的日志内容放在这张表里面。
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController| PK1|
 |LogTime |datetime | 日志记录时间|PK2|
 |LogContent|text|日志内容|UTF8|
@@ -140,7 +140,7 @@
 ## Device
 
 | 字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDevice|int unsigned|||
 |Name|varchar(128)|||
 |MAC |binary(8)| ||
@@ -150,7 +150,7 @@
 ## DeviceStatus
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDevice|int unsigned|Device.idDevice ||
 |VersionSoftware |binary(4) |软件版本号| LC300：只用2字节|
 |VersionHardware |binary(4) |硬件版本号| LC300：只用2字节|
@@ -192,7 +192,7 @@
 StarRiver Config 在此记录用户录入的设备初始信息。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDevice|int unsigned|Device.idDevice ||
 |TransitionTime|tinyint unsigned |调光渐变时间||
 |BrightnessMin| tinyint unsigned |最小亮度值| |
@@ -209,7 +209,7 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 记录设备状态变化。
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDevice|int unsigned|Device.idDevice |PK1|
 |field| varchar(32) |被修改的字段名 |PK2|
 |field_value |varchar(255)|变化后的字段值 ||
@@ -232,7 +232,7 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 三张表共同部分的定义如下：
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDevice|int unsigned|Device.idDevice| PK1|
 |field| varchar(32) |被修改的字段名 |PK2|
 |field_value |double|字段采样值| |
@@ -246,7 +246,7 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 峰谷值定义如下:
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |field_max| double|汇总时段内最大采样值|浮点数可能无法精确表示整数采样|
 |field_min| double|汇总时段内最小采样值|浮点数可能无法精确表示整数采样|
 
@@ -265,7 +265,7 @@ LCP-SH-D：该功能是在单灯控制器与集中控制器失去联系后采用
 LC300没有定义。
 
 |字段名| 类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDeviceSchedule|bigint unsigned| 自增ID||
 |idDevice|int unsigned|Device.idDevice ||
 |Item|varchar(32) |自动亮度表的一项|HH,mm,value|
@@ -276,7 +276,7 @@ LCP-SH-D协议场景号是1-254。
 LC300协议，场景号是1-16，0表示无场景。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idDeviceScene| tinyint unsigned| ||
 |idDevice|int unsigned|Device.idDevice ||
 |Brightness|tinyint unsigned |灯的场景亮度值 |0-100|
@@ -288,7 +288,7 @@ LC300协议，场景号是1-16，0表示无场景。
 LC300未定义。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID||
 |idDevice|int unsigned|Device.idDevice ||
 |Item|varchar(128)|信息上报的一项|StatusID,low,high|
@@ -300,7 +300,7 @@ LC300未定义。
 LC300未定义。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID||
 |idDevice|int unsigned|Device.idDevice||
 |Item|varchar(450)|报警阈值的一项 |StatusID, low, high, warn_msg （逗号后不加空格）|
@@ -312,7 +312,7 @@ LC300未定义。
 LC300未定义。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID||
 |idDevice|int unsigned|Device.idDevice ||
 |MsgTime |timestamp | ||
@@ -325,7 +325,7 @@ LC300未定义。
 服务器进程每隔一段时间在这里取任务，分别处理。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |id|bigint unsigned| 自增ID|当流水号|
 |Time|datetime|||
 |idUser|int unsigned |User.idUser ||
@@ -344,7 +344,7 @@ LC300未定义。
 除了 `TaskTodo` 的字段，另有以下字段：
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |FinishedTime|timestamp  |完成时间|插入记录时由数据库自动生成|
 |ReturnCode|smallint |返回代码|成功：0；失败：控制器返回的确认码 bitwise-OR；控制器未能返回结果（如超时）：-2。|
 |ErrorMsg|varchar(255) | 错误描述信息|UTF8|
@@ -352,7 +352,7 @@ LC300未定义。
 ## Firmware
 
 | 字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFirmware|int unsigned| ||
 |Firmware|mediumblob|二进制内容||
 |FirmwareMD5 |char(32)|md5(Firmware)| |
@@ -367,7 +367,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 ## FrontendMapBmp
 
 | 字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFrontendMapBmp|tinyint unsigned| ||
 |Name|varchar(64)|||
 |DisplayOrder|tinyint unsigned |前台程序界面上显示地图的顺序|不宜重复|
@@ -377,7 +377,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 对于LCP-SH-D和LC300协议：现在用户的组和灯的组是统一的，即用户的第一个组就是所有灯的第一个组；对于CSA来说，一个用户的组可能对应控制器1的网关ID1和控制器2的网关ID2，所以还要建一张表来指定用户组和控制器里网关ID的关系(有点像以前LC200)。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFrontendGroup| tinyint unsigned| ||
 |Name|varchar(64)| ||
 |Color| tinyint unsigned| |Config程序里作为选项|
@@ -387,7 +387,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 这是用户定义的场景。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFrontendScene |tinyint unsigned| ||
 |Name|varchar(64)| ||
 |DisplayOrder|tinyint unsigned||不宜重复|
@@ -399,7 +399,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 对于CSA的协议，灯是属于控制器下的某个网关ID，所以可能会增加一个字段表示灯属于控制器的哪个网关。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController|PK1|
 |idDevice|int unsigned|Device.idDevice|PK2|
 |DeviceDisplayOrder|int unsigned|界面显示该控制器下的灯时的序号||
@@ -410,7 +410,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 描述灯属于哪个组。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFrontendGroup| tinyint unsigned |FrontendGroup. idFrontendGroup|PK1|
 |idDevice|int unsigned|Device.idDevice|PK2|
 |DeviceDisplayOrder|int unsigned|界面显示该组内的灯时的序号|不宜重复|
@@ -420,7 +420,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 描述各种设备在BMP地图上的信息。
 
 |字段名|类型|含义|备注|
-|--|--|--|--|
+| --- | --- | --- | --- |
 |idFrontendMapBmp|int unsigned|FrontendMapBmp. idFrontendMapBmp|PK1|
 |DeviceType|tinyint unsigned |表明设备类型，如控制器、灯等| PK2|
 |idDevice|int unsigned|Device.idDevice or Controller.idController| PK3|
