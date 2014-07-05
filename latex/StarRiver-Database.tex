@@ -5,25 +5,26 @@
 \usepackage{xunicode}
 
 \usepackage[top=1.2in,bottom=1.2in,left=1.2in,right=1in]{geometry} % 页边距
+\defaultfontfeatures{Mapping=tex-text}%连字号
 
 \usepackage[boldfont,CJKchecksingle]{xeCJK} % 允许斜体和粗体
 \xeCJKsetup{PunctStyle=hangmobanjiao}
-\linespread{1.15} 						% 行间距
-\setlength{\parskip}{\baselineskip} 	% 段间距
-\usepackage{indentfirst}					% 首行缩进
+\linespread{1.15}                       % 行间距
+\setlength{\parskip}{\baselineskip}     % 段间距
+\usepackage{indentfirst}                    % 首行缩进
 
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 
 \usepackage[unicode=true,colorlinks,linkcolor=blue]{hyperref} % 超链接
+\setCJKmainfont[BoldFont=方正兰亭黑简体, ItalicFont=方正粗楷简体]{方正新书宋_GBK}
+\setCJKsansfont[BoldFont=方正兰亭粗黑简体]{方正兰亭黑简体}
+\setCJKmonofont[BoldFont=方正兰亭黑简体]{方正粗楷简体}
+\setmainfont[BoldFont=Fontin Bold, ItalicFont=Fontin Italic]{Fontin Regular}                    % 英文衬线字体
+\setmonofont{DejaVu Sans Mono}                  % 英文等宽字体
+\setsansfont{Roboto}            % 英文无衬线字体
 
-\usepackage{fontspec}
-\setCJKmainfont[Path=fonts/, BoldFont=FZLanTingHeiS-B-GB, ItalicFont=FZCuKaiS-R-GB]{FZNewShuSong-Z10}       % 设置缺省中文字体
-\setmainfont[Path=fonts/, BoldFont=Fontin-Bold, ItalicFont=Fontin-Italic]{Fontin-Regular}                       % 英文衬线字体
-\setmonofont[Path=fonts/]{Deja Vu Sans Mono}                % 英文等宽字体
-\setsansfont[Path=fonts/, BoldFont=Roboto-Bold, ItalicFont=Roboto-Italic]{Roboto-Regular}           % 英文无衬线字体
-
-\usepackage{graphicx}        			% 嵌入png图像
+\usepackage{graphicx}                   % 嵌入png图像
 \usepackage{longtable,tabu,booktabs}
 \usepackage{pdflscape}
 
@@ -31,8 +32,6 @@
 \renewcommand\contentsname{目录}
 \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日} % 中文日期
 
-\usepackage{zhspacing}
-\zhspacing
 
 \begin{document}
 
