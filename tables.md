@@ -32,7 +32,7 @@
 |idUser|int unsigned|||
 |Username|varchar(64)| ||
 |MD5| varchar(40) |MD5(username+password)|128-bit, 32 digits long hex string|
-|Admin| tinyint|用户权限|0: 一般用户, 1: 管理员, 2: 通信程序|
+|Admin| tinyint|用户权限|0: 通信程序; 1: 一般用户, 2: 管理员 |
 |Note|varchar(450)|备注|UTF8|
 
 默认分配如下两个用户：
