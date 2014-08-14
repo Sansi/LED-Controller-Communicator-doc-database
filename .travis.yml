@@ -12,6 +12,6 @@ before_install:
   - cp -rf latex/fonts/* ~/.fonts/
   - sudo fc-cache -f -v
 script:
-  - ./convert2tex.sh
+  - sh convert2tex.sh
   - cd latex
   - latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' StarRiver-Database.tex
