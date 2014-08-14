@@ -349,6 +349,8 @@ LC300未定义。
 |ReturnCode|smallint |返回代码|成功：0；失败：控制器返回的确认码 bitwise-OR；控制器未能返回结果（如超时）：-2。|
 |ErrorMsg|varchar(255) | 错误描述信息|UTF8|
 
+有一个 event (*Remove outdated tasks from TaskDone*) 每周清理创建时间在14天之前的任务，以保证这张表不会无限膨胀下去。
+
 ## Firmware
 
 | 字段名|类型|含义|备注|
