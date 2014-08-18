@@ -199,6 +199,9 @@ time & timestamp & 修改时间 & PK3
   StatusCode: \texttt{field\_value} 存储 \texttt{HEX(StatusCode)}
 \end{enumerate}
 
+每月执行的事件 \texttt{Delete outdated status history}
+会将超过365天前的记录删除。
+
 \subsection{ControllerSchedule}\label{controllerschedule}
 
 查询时控计划时把结果放到这张表里，将原来该控制器的删掉，再重新插入。
@@ -513,10 +516,13 @@ field\_min & double & 汇总时段内最小采样值 &
 \item
   每5分钟，对 \texttt{DeviceStatus} 进行采样，记录设备的状态量。
 \item
-  每天，将前一天的采样归纳成每小时均值。
+  每天，将前一天的采样归纳成每小时均值。删除3天前的采样。
 \item
-  每周，将前一周的采样归纳成每日均值。
+  每周，将前一周的采样归纳成每日均值。删除一周前的小时均值。
 \end{enumerate}
+
+每月执行的事件 \texttt{Delete outdated status history} 会将
+\texttt{DeviceStatusHistory\_daily} 中超过365天前的记录删除。
 
 \subsection{DeviceSchedule}\label{deviceschedule}
 

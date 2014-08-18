@@ -95,6 +95,8 @@
 1. CommState: `field_value` 存储 `CAST(CommState AS char)`
 2. StatusCode: `field_value` 存储 `HEX(StatusCode)`
 
+每月执行的事件 `Delete outdated status history` 会将超过365天前的记录删除。
+
 ## ControllerSchedule
 
 查询时控计划时把结果放到这张表里，将原来该控制器的删掉，再重新插入。
@@ -253,8 +255,10 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 有三个event更新这些表：
 
 1. 每5分钟，对 `DeviceStatus` 进行采样，记录设备的状态量。
-2. 每天，将前一天的采样归纳成每小时均值。
-3. 每周，将前一周的采样归纳成每日均值。
+2. 每天，将前一天的采样归纳成每小时均值。删除3天前的采样。
+3. 每周，将前一周的采样归纳成每日均值。删除一周前的小时均值。
+
+每月执行的事件 `Delete outdated status history` 会将 `DeviceStatusHistory_daily` 中超过365天前的记录删除。
 
 ## DeviceSchedule
 
