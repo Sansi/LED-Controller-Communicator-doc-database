@@ -7,9 +7,9 @@
 | 字段名 | 类型 | 含义 | 备注 |
 | --- | --- | --- | --- |
 |idSystemConfig|int unsigned AUTO_INCREMENT|||
-|NetworkMode|tinyint unsigned|通信程序角色|0: 服务器, 1: 客户端。考虑同时作为多种角色与不同控制器通信的需求|
+|NetworkMode|tinyint unsigned|StarRiver服务角色|0: 服务器, 1: 客户端。考虑同时作为多种角色与不同控制器通信的需求|
 |NetworkPort| smallint unsigned| 服务器侦听端口||
-|LastServerActivity|timestamp| 通信程序最近连接时间|通信程序定时更新这个字段。|
+|LastServerActivity|timestamp| StarRiver服务最近连接时间|StarRiver服务定时更新这个字段。|
 |IntervalReportActivity|int unsigned|更新最近连接时间间隔||
 |IntervalAutoStatusQuery |int unsigned|自动查询控制器状态间隔||
 |IntervalAutoDeviceStatusQuery| int unsigned|自动查询设备状态间隔||
@@ -32,14 +32,14 @@
 |idUser|int unsigned|||
 |Username|varchar(64)| ||
 |MD5| varchar(40) |MD5(username+password)|128-bit, 32 digits long hex string|
-|Admin| tinyint|用户权限|0: 通信程序; 1: 一般用户, 2: 管理员 |
+|Admin| tinyint|用户权限|0: StarRiver服务; 1: 一般用户, 2: 管理员 |
 |Note|varchar(450)|备注|UTF8|
 
 默认分配如下两个用户：
 
 |idUser|Username|备注|
 | --- | --- | --- |
-|0| comm|通信程序|
+|0| comm|StarRiver服务|
 |1| admin| 管理员|
 
 ## Controller
@@ -67,7 +67,7 @@
 | --- | --- | --- | --- |
 |idController|int unsigned|Controller.idController||
 |CommState| tinyint unsigned |通信状态|0: 正常, 1: 故障|
-|LoginState|tinyint unsigned |是否已注册到通信程序服务端| 0: 未注册, 1: 已注册|
+|LoginState|tinyint unsigned |是否已注册到StarRiver服务服务端| 0: 未注册, 1: 已注册|
 |VersionSoftware |binary(4) |软件版本||
 |VersionSystem| binary(4) |系统版本||
 |VersionKernel| binary(4) |内核版本||
