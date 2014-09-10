@@ -221,6 +221,25 @@ ss, Addr, mode, value (逗号后不加空格)
 \bottomrule
 \end{longtabu}
 
+\subsection{ControllerSchedule\_edit}\label{controllerscheduleux5fedit}
+
+用户编辑时控计划时把结果放到这张表里。
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule\addlinespace
+字段名 & 类型 & 含义 & 备注
+\\\addlinespace
+\midrule\endhead
+id & bigint unsigned & 自增ID &
+\\\addlinespace
+idController & int unsigned & Controller.idController &
+\\\addlinespace
+Item & varchar(128) & 时间亮度表的一项 & 上海：MM, DD, MM, DD, HH, mm,
+ss, Addr, mode, value (逗号后不加空格)
+\\\addlinespace
+\bottomrule
+\end{longtabu}
+
 \subsection{ControllerCellNumbers}\label{controllercellnumbers}
 
 控制器上的手机号。

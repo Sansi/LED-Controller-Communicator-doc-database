@@ -107,6 +107,16 @@
 |idController|int unsigned|Controller.idController ||
 |Item|varchar(128)|时间亮度表的一项|上海：MM, DD, MM, DD, HH, mm, ss, Addr, mode, value (逗号后不加空格)|
 
+## ControllerSchedule_edit
+
+用户编辑时控计划时把结果放到这张表里。
+
+|字段名| 类型|含义|备注|
+| --- | --- | --- | --- |
+|id|bigint unsigned| 自增ID||
+|idController|int unsigned|Controller.idController ||
+|Item|varchar(128)|时间亮度表的一项|上海：MM, DD, MM, DD, HH, mm, ss, Addr, mode, value (逗号后不加空格)|
+
 ## ControllerCellNumbers
 
 控制器上的手机号。
