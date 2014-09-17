@@ -13,5 +13,5 @@ before_install:
   - sudo fc-cache -f -v
 script:
   - sh convert2tex.sh
-  - cd latex
-  - latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' StarRiver-Database.tex
+#  - cd latex
+#  - latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' StarRiver-Database.tex
