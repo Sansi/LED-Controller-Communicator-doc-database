@@ -404,9 +404,23 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 
 |字段名|类型|含义|备注|
 | --- | --- | --- | --- |
-|idFrontendScene |tinyint unsigned| ||
+|idFrontendScene |int unsigned| ||
 |Name|varchar(64)| ||
-|DisplayOrder|tinyint unsigned||不宜重复|
+|DisplayOrder|int unsigned||不宜重复|
+
+## FrontendSceneItem
+
+这是用户定义的场景。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id |bigint unsigned| ||
+|scene_id |int unsigned| ||
+|device_addr|binary(8)| | 可以是单灯地址，也可以是组地址|
+|mode |int unsigned| |0: manual, 1: auto, 2: schedule|
+|value |int unsigned| |brightness OR id auto policy OR id schedule|
+
+
 
 ## FrontendControllerDevices
 
@@ -443,3 +457,44 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |PosX|int |设备在地图上的横坐标| |
 |PosY|int |设备在地图上的纵坐标| |
 |idIcon|tinyint unsigned||对应的图标文件必须存在|
+
+## Sensor
+
+传感器信息。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id|int unsigned|||
+|name|varchar(255) |||
+|type|int unsigned||0: virtual, 1: brightness, 2: traffic|
+|source|varchar(255) ||"controller_mac,port(1-4)" for those attached on a controller; "ip,port,user,pass,sql" for those available in a database|
+|raw_value|double|| |
+|normalized_value|int|| mapped to range [0,100]|
+|normalize_method|int|| predefined method id here. Method lies in source code.|
+
+
+
+## AutoPolicy
+
+自动调光策略。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id|int unsigned|||
+|name|varchar(255) |||
+|display_order|int unsigned|||
+|sensor_id|int unsigned|Sensor.id| |
+
+## AutoPolicyItem
+
+自动调光策略单项。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id|bigint unsigned|||
+|id_policy|int unsigned|AutoPolicy.id||
+|input|bigint unsigned||[0,100]|
+|output|bigint unsigned||[0,100]|
+|type|bigint unsigned||0: calculated, 1: user defined|
+
+对于每个 `id_policy` ，都应生成101个策略项，分别对应 `input` 为0到100的情形。其中若干项是用户设定的，其余是插值计算而得。

@@ -4,120 +4,91 @@
 \texttt{\textbackslash{}n} 分开。
 
 \begin{longtabu}[c]{@{}rXXX@{}}
-\toprule\addlinespace
-Id & Command & Parameters & 备注
-\\\addlinespace
-\midrule\endhead
-0 & 密钥更新 & &
-\\\addlinespace
-1 & 重启控制器 & 控制器地址（8字节MAC） &
-\\\addlinespace
+\toprule
+Id & Command & Parameters & 备注\tabularnewline
+\midrule
+\endhead
+0 & 密钥更新 & &\tabularnewline
+1 & 重启控制器 & 控制器地址（8字节MAC） &\tabularnewline
 2 & 控制器时间同步 & 控制器地址 &
-如果控制器地址（8字节MAC）为广播地址的话则所有控制器都要时间同步
-\\\addlinespace
+如果控制器地址（8字节MAC）为广播地址的话则所有控制器都要时间同步\tabularnewline
 3 & 设置控制器调光模式 & 控制器地址,模式 &
-模式=0远程调光，调光指令由中央控制器发送；模式=1自动调光，集中控制器根据预先设置的时控计划进入时控模式
-\\\addlinespace
+模式=0远程调光，调光指令由中央控制器发送；模式=1自动调光，集中控制器根据预先设置的时控计划进入时控模式\tabularnewline
 4 & 设置控制器时控调光计划 &
 控制器地址,终端地址（8字节MAC）,开始月,开始日,结束月,结束日,时,分,秒,调光模式,调光值\texttt{\textbackslash{}n}
-& 调光模式=0表示后面是直接亮度值，=1表示后面是场景值
-\\\addlinespace
-5 & 清空控制器时控调光计划 & 控制器地址 &
-\\\addlinespace
-6 & 设置控制器自动调光计划 & &
-\\\addlinespace
-7 & 清空控制器自动调光计划 & 控制器地址 &
-\\\addlinespace
-8 & 下载手机号码到控制器 & &
-\\\addlinespace
-9 & 查询控制器手机号 & 控制器地址 &
-\\\addlinespace
-10 & 删除控制器中所有手机号 & 控制器地址 &
-\\\addlinespace
-11 & 查询控制器内短信数量 & 控制器地址 &
-\\\addlinespace
-12 & 查询控制器某条短信内容 & &
-\\\addlinespace
-13 & 删除控制器某条短信内容 & &
-\\\addlinespace
+& 调光模式=0表示后面是直接亮度值，=1表示后面是场景值\tabularnewline
+5 & 清空控制器时控调光计划 & 控制器地址 &\tabularnewline
+6 & 设置控制器自动调光计划 & &\tabularnewline
+7 & 清空控制器自动调光计划 & 控制器地址 &\tabularnewline
+8 & 下载手机号码到控制器 & &\tabularnewline
+9 & 查询控制器手机号 & 控制器地址 &\tabularnewline
+10 & 删除控制器中所有手机号 & 控制器地址 &\tabularnewline
+11 & 查询控制器内短信数量 & 控制器地址 &\tabularnewline
+12 & 查询控制器某条短信内容 & &\tabularnewline
+13 & 删除控制器某条短信内容 & &\tabularnewline
 14 & 查询控制器状态 & 控制器地址 &
-上海：命令0x0080；LC300：是多条命令的组合。
-\\\addlinespace
-15 & 查询控制器时控调光计划 & 控制器地址 &
-\\\addlinespace
-16 & 查询控制器自动调光计划 & 控制器地址 &
-\\\addlinespace
-17 & 查询控制器日志 & 控制器地址 &
-\\\addlinespace
+上海：命令0x0080；LC300：是多条命令的组合。\tabularnewline
+15 & 查询控制器时控调光计划 & 控制器地址 &\tabularnewline
+16 & 查询控制器自动调光计划 & 控制器地址 &\tabularnewline
+17 & 查询控制器日志 & 控制器地址 &\tabularnewline
 18 & 升级控制器固件 & 控制器地址,FirmwareMD5 &
-控制器进入固件升级模式，固件升级，退出固件升级模式
-\\\addlinespace
-19 & 设置控制器所有属性 & &
-\\\addlinespace
-20 & 初始化终端信息 & 控制器地址 &
-\\\addlinespace
-21 & 查询终端初始化信息 & & 上海没有
-\\\addlinespace
-22 & 删除终端信息 & 控制器地址 & 删除控制器下所有的终端
-\\\addlinespace
+控制器进入固件升级模式，固件升级，退出固件升级模式\tabularnewline
+19 & 设置控制器所有属性 & &\tabularnewline
+20 & 初始化终端信息 & 控制器地址 &\tabularnewline
+21 & 查询终端初始化信息 & & 上海没有\tabularnewline
+22 & 删除终端信息 & 控制器地址 & 删除控制器下所有的终端\tabularnewline
 23 & 终端调光 & 控制器地址,终端地址,亮度值\texttt{\textbackslash{}n} &
-这个可能主要用于单灯调光。控制器地址（8字节MAC）为广播地址的话是向所有控制器发；终端地址（8字节MAC）是广播地址的话是向控制器下的所有终端发、终端地址（8字节MAC）是组地址的话是向控制器下这个组的终端发、终端地址（8字节MAC）也可以是单个终端的地址
-\\\addlinespace
+这个可能主要用于单灯调光。控制器地址（8字节MAC）为广播地址的话是向所有控制器发；终端地址（8字节MAC）是广播地址的话是向控制器下的所有终端发、终端地址（8字节MAC）是组地址的话是向控制器下这个组的终端发、终端地址（8字节MAC）也可以是单个终端的地址\tabularnewline
 24 & 初始化终端亮度 &
 终端地址,调光渐变时间,上电亮度值,最大亮度值,最小亮度值,故障亮度值,调光系数
-& 25-30的批处理
-\\\addlinespace
-25 & 设置终端调光渐变时间 & 终端地址,调光渐变时间 &
-\\\addlinespace
-26 & 设置终端上电亮度值 & 终端地址,上电亮度值 &
-\\\addlinespace
-27 & 设置终端最大亮度值 & 终端地址,最大亮度值 &
-\\\addlinespace
-28 & 设置终端最小亮度值 & 终端地址,最小亮度值 &
-\\\addlinespace
-29 & 设置终端故障亮度值 & 终端地址,故障亮度值 &
-\\\addlinespace
-30 & 设置终端调光系数 & 终端地址,调光系数 &
-\\\addlinespace
-31 & 终端恢复出厂设置 & 终端地址 &
-\\\addlinespace
+& 25-30的批处理\tabularnewline
+25 & 设置终端调光渐变时间 & 终端地址,调光渐变时间 &\tabularnewline
+26 & 设置终端上电亮度值 & 终端地址,上电亮度值 &\tabularnewline
+27 & 设置终端最大亮度值 & 终端地址,最大亮度值 &\tabularnewline
+28 & 设置终端最小亮度值 & 终端地址,最小亮度值 &\tabularnewline
+29 & 设置终端故障亮度值 & 终端地址,故障亮度值 &\tabularnewline
+30 & 设置终端调光系数 & 终端地址,调光系数 &\tabularnewline
+31 & 终端恢复出厂设置 & 终端地址 &\tabularnewline
 32 & 终端组设置 & 终端地址,组号\texttt{\textbackslash{}n} &
-LC300:组0不用，就用组1-63
-\\\addlinespace
-33 & 终端组删除 & 终端地址 & 删除终端下的所有组
-\\\addlinespace
-34 & 终端场景设置 & 终端地址,场景号,亮度值\texttt{\textbackslash{}n} &
-\\\addlinespace
-35 & 终端场景删除 & 终端地址 & 删除终端下的所有场景
-\\\addlinespace
-36 & 设置终端自动调光计划 & &
-\\\addlinespace
-37 & 删除终端自动调光计划 & 终端地址 &
-\\\addlinespace
-38 & 设置终端信息上报条件 & &
-\\\addlinespace
-39 & 设置终端报警阈值条件 & &
-\\\addlinespace
-40 & 查询终端状态量终端地址 & 终端地址\texttt{\textbackslash{}n} &
-\\\addlinespace
-41 & 查询终端自动调光计划 & 终端地址 &
-\\\addlinespace
-42 & 查询终端组号 & 终端地址 &
-\\\addlinespace
-43 & 查询终端场景 & 终端地址 &
-\\\addlinespace
-44 & 升级终端固件 & 终端地址,FirmwareMD5 & StarRiver服务按流程走
-\\\addlinespace
-45 & 清零终端总工作时间 & 终端地址 &
-\\\addlinespace
-46 & 清零终端总用电量 & 终端地址 &
-\\\addlinespace
-47 & 设置终端过温保护参数 & &
-\\\addlinespace
-48 & 开启关闭终端过温保护 & & LCP-SH-D没有
-\\\addlinespace
+LC300:组0不用，就用组1-63\tabularnewline
+33 & 终端组删除 & 终端地址 & 删除终端下的所有组\tabularnewline
+34 & 终端场景设置 & 终端地址,场景号,亮度值\texttt{\textbackslash{}n}
+&\tabularnewline
+35 & 终端场景删除 & 终端地址 & 删除终端下的所有场景\tabularnewline
+36 & 设置终端自动调光计划 & &\tabularnewline
+37 & 删除终端自动调光计划 & 终端地址 &\tabularnewline
+38 & 设置终端信息上报条件 & &\tabularnewline
+39 & 设置终端报警阈值条件 & &\tabularnewline
+40 & 查询终端状态量终端地址 & 终端地址\texttt{\textbackslash{}n}
+&\tabularnewline
+41 & 查询终端自动调光计划 & 终端地址 &\tabularnewline
+42 & 查询终端组号 & 终端地址 &\tabularnewline
+43 & 查询终端场景 & 终端地址 &\tabularnewline
+44 & 升级终端固件 & 终端地址,FirmwareMD5 &
+StarRiver服务按流程走\tabularnewline
+45 & 清零终端总工作时间 & 终端地址 &\tabularnewline
+46 & 清零终端总用电量 & 终端地址 &\tabularnewline
+47 & 设置终端过温保护参数 & &\tabularnewline
+48 & 开启关闭终端过温保护 & & LCP-SH-D没有\tabularnewline
 49 & 重启StarRiver Server & &
-任务返回值只有0，重启失败时从原理上就无法再将这个任务加到TaskDone了，超时还未从TaskDone读到重启结果可以认为是失败。
-\\\addlinespace
+任务返回值只有0，重启失败时从原理上就无法再将这个任务加到TaskDone了，超时还未从TaskDone读到重启结果可以认为是失败。\tabularnewline
+\bottomrule
+\end{longtabu}
+
+以下任务类型不由StarRiver提交，尽在StarRiver Server中用于数据帧的识别。
+
+\begin{longtabu}[c]{@{}rll@{}}
+\toprule
+Id & Command & 备注\tabularnewline
+\midrule
+\endhead
+50 & DownloadControllerFirmwareBin &\tabularnewline
+51 & ExitControllerFirmwareUpdateMode &\tabularnewline
+52 & DownloadDeviceFirmwareMetadata &\tabularnewline
+53 & DownloadDeviceFirmwareBin &\tabularnewline
+54 & DownloadFirmwareToDevice &\tabularnewline
+55 & ExitDeviceFirmwareUpdateMode &\tabularnewline
+56 & KeepAlive &\tabularnewline
+57 & Register &\tabularnewline
 \bottomrule
 \end{longtabu}

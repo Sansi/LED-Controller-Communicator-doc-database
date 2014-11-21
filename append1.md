@@ -54,3 +54,16 @@
 |47|设置终端过温保护参数|||
 |48|开启关闭终端过温保护||LCP-SH-D没有|
 |49|重启StarRiver Server||任务返回值只有0，重启失败时从原理上就无法再将这个任务加到TaskDone了，超时还未从TaskDone读到重启结果可以认为是失败。|
+
+以下任务类型不由StarRiver提交，尽在StarRiver Server中用于数据帧的识别。
+
+|Id|Command|备注   |
+| ---: | :--- | :--- |
+|50|DownloadControllerFirmwareBin||
+|51|ExitControllerFirmwareUpdateMode||
+|52|DownloadDeviceFirmwareMetadata||
+|53|DownloadDeviceFirmwareBin||
+|54|DownloadFirmwareToDevice||
+|55|ExitDeviceFirmwareUpdateMode||
+|56|KeepAlive||
+|57|Register||
