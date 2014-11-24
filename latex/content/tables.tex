@@ -786,3 +786,34 @@ type & bigint unsigned & & 0: calculated, 1: user defined\tabularnewline
 对于每个 \texttt{id\_policy} ，都应生成101个策略项，分别对应
 \texttt{input}
 为0到100的情形。其中若干项是用户设定的，其余是插值计算而得。
+
+\subsection{TimeSchedule}\label{timeschedule}
+
+调光时间表。
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+id & int unsigned & &\tabularnewline
+name & varchar(255) & &\tabularnewline
+display\_order & int unsigned & &\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{TimeScheduleItem}\label{timescheduleitem}
+
+调光时间表的逐条记录。
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+id & bigint unsigned & &\tabularnewline
+idTimeSchedule & int unsigned & &\tabularnewline
+name & varchar(255) & & MM, DD, MM, DD, HH:mm:ss,
+brightness\tabularnewline
+\bottomrule
+\end{longtabu}

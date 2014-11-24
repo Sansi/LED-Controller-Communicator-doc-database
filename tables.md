@@ -498,3 +498,24 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |type|bigint unsigned||0: calculated, 1: user defined|
 
 对于每个 `id_policy` ，都应生成101个策略项，分别对应 `input` 为0到100的情形。其中若干项是用户设定的，其余是插值计算而得。
+
+## TimeSchedule
+
+调光时间表。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id|int unsigned|||
+|name|varchar(255) |||
+|display_order|int unsigned|||
+
+## TimeScheduleItem
+
+调光时间表的逐条记录。
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|id|bigint unsigned|||
+|idTimeSchedule|int unsigned|||
+|name|varchar(255) ||MM, DD, MM, DD, HH:mm:ss, brightness|
+
