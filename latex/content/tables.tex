@@ -39,6 +39,16 @@ RetryEvent & tinyint unsigned & 事件重试次数 & CSA 6.2 N2\tabularnewline
 RetryKeepalive & tinyint unsigned & 心跳重试次数 & CSA 6.3
 N3\tabularnewline
 MapFormat & int & 地图类型 & 0: BMP, 1: GIS\tabularnewline
+EmergencyMode & int & 紧急调光模式 & 0: default brightness, 1: last
+brightness, 2: schedule\tabularnewline
+LastDeviceModeChange & timestamp & DeviceMode 表最后更新时间
+&\tabularnewline
+LastAutoPolicyChange & timestamp & AutoPolicy 表最后更新时间
+&\tabularnewline
+LastTimeScheduleChange & timestamp & TimeSchedule 表最后更新时间
+&\tabularnewline
+LastFrontendSceneChange & timestamp & FrontendScene 表最后更新时间
+&\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -815,5 +825,20 @@ id & bigint unsigned & &\tabularnewline
 idTimeSchedule & int unsigned & &\tabularnewline
 name & varchar(255) & & MM, DD, MM, DD, HH:mm:ss,
 brightness\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{DeviceMode}\label{devicemode}
+
+各控制器下各个设备的调光模式
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+controller\_addr & binary(8) & & PK1\tabularnewline
+device\_addr & binary(8) & & PK2\tabularnewline
+mode & int unsigned & & 0: manual, 1: auto, 2: schedule\tabularnewline
 \bottomrule
 \end{longtabu}

@@ -24,6 +24,11 @@
 |RetryEvent|tinyint unsigned|事件重试次数|CSA 6.2 N2|
 |RetryKeepalive|tinyint unsigned|心跳重试次数|CSA 6.3 N3|
 |MapFormat| int|地图类型|0: BMP, 1: GIS|
+|EmergencyMode| int|紧急调光模式|0: default brightness, 1: last brightness, 2: schedule |
+|LastDeviceModeChange| timestamp|DeviceMode 表最后更新时间||
+|LastAutoPolicyChange| timestamp|AutoPolicy 表最后更新时间||
+|LastTimeScheduleChange| timestamp|TimeSchedule 表最后更新时间||
+|LastFrontendSceneChange| timestamp|FrontendScene 表最后更新时间||
 
 ## User
 
@@ -420,8 +425,6 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |mode |int unsigned| |0: manual, 1: auto, 2: schedule|
 |value |int unsigned| |brightness OR id auto policy OR id schedule|
 
-
-
 ## FrontendControllerDevices
 
 描述灯属于哪个控制器。
@@ -472,8 +475,6 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |normalized_value|int|| mapped to range [0,100]|
 |normalize_method|int|| predefined method id here. Method lies in source code.|
 
-
-
 ## AutoPolicy
 
 自动调光策略。
@@ -517,5 +518,14 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 | --- | --- | --- | --- |
 |id|bigint unsigned|||
 |idTimeSchedule|int unsigned|||
-|name|varchar(255) ||MM, DD, MM, DD, HH:mm:ss, brightness|
+|name|varchar(255) ||MM, DD, MM, DD, HH:mm:ss, brightness |
 
+## DeviceMode
+
+各控制器下各个设备的调光模式
+
+|字段名|类型|含义|备注|
+| --- | --- | --- | --- |
+|controller_addr|binary(8)||PK1|
+|device_addr|binary(8)||PK2|
+|mode|int unsigned ||0: manual, 1: auto, 2: schedule |

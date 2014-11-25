@@ -72,6 +72,11 @@ StarRiver服务按流程走\tabularnewline
 48 & 开启关闭终端过温保护 & & LCP-SH-D没有\tabularnewline
 49 & 重启StarRiver Server & &
 任务返回值只有0，重启失败时从原理上就无法再将这个任务加到TaskDone了，超时还未从TaskDone读到重启结果可以认为是失败。\tabularnewline
+58 & 终端调光 & 控制器地址,终端地址,调光模式,值 &
+调光模式（值）：1-手动（亮度） 2-自动（自动表ID）
+3-时控（时控表ID）\tabularnewline
+59 & 设置紧急调光模式 & 模式 &
+0：默认亮度，1：最近亮度，2：预存时控计划\tabularnewline
 \bottomrule
 \end{longtabu}
 
