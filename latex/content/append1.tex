@@ -26,8 +26,8 @@ Id & Command & Parameters & 备注\tabularnewline
 11 & 查询控制器内短信数量 & 控制器地址 &\tabularnewline
 12 & 查询控制器某条短信内容 & &\tabularnewline
 13 & 删除控制器某条短信内容 & &\tabularnewline
-14 & 查询控制器状态 & 控制器地址 &
-上海：命令0x0080；LC300：是多条命令的组合。\tabularnewline
+14 & 查询控制器状态 & 控制器地址 & 上海：命令
+\texttt{0x0080}；LC300：是多条命令的组合。\tabularnewline
 15 & 查询控制器时控调光计划 & 控制器地址 &\tabularnewline
 16 & 查询控制器自动调光计划 & 控制器地址 &\tabularnewline
 17 & 查询控制器日志 & 控制器地址 &\tabularnewline
@@ -76,7 +76,9 @@ StarRiver服务按流程走\tabularnewline
 调光模式（值）：1-手动（亮度） 2-自动（自动表ID）
 3-时控（时控表ID）\tabularnewline
 59 & 设置紧急调光模式 & 模式 &
-0：默认亮度，1：最近亮度，2：预存时控计划\tabularnewline
+0：默认亮度，1：最近亮度，2：预存时控计划。通信时复用 \texttt{0x000D}
+指令，用 \texttt{0xA0}, \texttt{0xA1} 和 \texttt{0xA2}
+表示上述模式。\tabularnewline
 \bottomrule
 \end{longtabu}
 
