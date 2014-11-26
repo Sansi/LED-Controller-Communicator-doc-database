@@ -76,10 +76,11 @@ StarRiver服务按流程走\tabularnewline
 控制器地址,终端地址,自动表ID\texttt{\textbackslash{}n} &\tabularnewline
 59 & 终端时控调光 &
 控制器地址,终端地址,时控表ID\texttt{\textbackslash{}n} &\tabularnewline
-60 & 设置紧急调光模式 & 模式 &
-0：默认亮度，1：最近亮度，2：预存时控计划。通信时复用 \texttt{0x000D}
-指令，用 \texttt{0xA0}, \texttt{0xA1} 和 \texttt{0xA2}
-表示上述模式。\tabularnewline
+60 & 设置紧急调光模式 & 控制器地址,模式 &
+0：终端故障亮度，1：最近亮度，2：预存时控计划。通信时复用
+\texttt{0x000D} 指令，用 \texttt{0xA0}, \texttt{0xA1} 和 \texttt{0xA2}
+表示上述模式。
+注意全局模式应统一，这里参数加控制器地址仅为了方便客户端识别操作失败的控制器。\tabularnewline
 \bottomrule
 \end{longtabu}
 
