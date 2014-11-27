@@ -65,6 +65,13 @@ MD5 & varchar(40) & MD5(username+password) & 128-bit, 32 digits long hex
 string\tabularnewline
 Admin & tinyint & 用户权限 & 0: StarRiver服务; 1: 一般用户, 2:
 管理员\tabularnewline
+first\_name & varchar(64) & &\tabularnewline
+last\_name & varchar(64) & &\tabularnewline
+email & varchar(128) & &\tabularnewline
+registration\_key & varchar(128) & & 预留注册用户名时使用\tabularnewline
+reset\_password\_key & varchar(128) & &
+预留重置密码时使用\tabularnewline
+registration\_id & varchar(128) & & 预留注册用户名时使用\tabularnewline
 Note & varchar(450) & 备注 & UTF8\tabularnewline
 \bottomrule
 \end{longtabu}

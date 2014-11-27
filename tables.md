@@ -38,6 +38,12 @@
 |Username|varchar(64)| ||
 |MD5| varchar(40) |MD5(username+password)|128-bit, 32 digits long hex string|
 |Admin| tinyint|用户权限|0: StarRiver服务; 1: 一般用户, 2: 管理员 |
+|first_name|varchar(64)| ||
+|last_name|varchar(64)| ||
+|email|varchar(128)| ||
+|registration_key|varchar(128)| |预留注册用户名时使用|
+|reset_password_key|varchar(128)| |预留重置密码时使用|
+|registration_id|varchar(128)||预留注册用户名时使用|
 |Note|varchar(450)|备注|UTF8|
 
 默认分配如下两个用户：
