@@ -70,4 +70,4 @@
 |54|DownloadFirmwareToDevice||
 |55|ExitDeviceFirmwareUpdateMode||
 |56|KeepAlive||
-|57|Register||
+|57|Register| |
