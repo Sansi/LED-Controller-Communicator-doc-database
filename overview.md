@@ -6,23 +6,23 @@ StarRiver服务采用异步通信方式，除非有明确的时序关系，否�
 
 ## 特殊的表
 
-* **TaskTodo**: 记录待操作的命令。前台程序添加的用户指令，或是StarRiver服务添加的定时操作。
+* **`task_todo`**: 记录待操作的命令。前台程序添加的用户指令，或是StarRiver服务添加的定时操作。
 
-* **TaskDone**: 记录已完成的命令的结果。命令完成后会从 TaskTodo 中删除，并在此插入一条记录。
+* **`task_done`**: 记录已完成的命令的结果。命令完成后会从 `task_todo` 中删除，并在此插入一条记录。
 
 ## 表的命名规则
 
-* 控制器相关的表，加 `Controller` 前缀；
-* 终端设备相关的表，加 `Device` 前缀；
-* 前台程序相关的表，加 `Frontend` 前缀。
+* 控制器相关的表，加 `controller_` 前缀；
+* 终端设备相关的表，加 `device_` 前缀；
+* 前台程序相关的表，加 `frontend_` 前缀。
 
 ## 表中读写的字段
 
-除非明确指出，否则前台程序从 `Controller*` 和 `Device*` 表中读数据，写操作主要在 `Frontend*` 和 `TaskTodo` 中进行。
+除非明确指出，否则前台程序从 `controller*` 和 `device*` 表中读数据，写操作主要在 `frontend*` 和 `task_todo` 中进行。
 
-StarRiver服务不写 `Frontend*` 表。
+StarRiver服务不写 `frontend*` 表。
 
-前台程序和StarRiver服务时间同步：如果有 Internet 连接，都与 `cn.pool.ntp.org` NTP 服务器对时；否则可以考虑在局域网内由一台Windows Server 或 Linux 主机作为 NTP 服务器，其他主机与该主机对时。
+前台程序和 StarRiver 服务器的时间同步：如果有 Internet 连接，都与 `cn.pool.ntp.org` NTP 服务器对时；否则可以考虑在局域网内由一台 Windows Server 或 Linux 主机作为 NTP 服务器，其他主机与该主机对时。
 
 多个前台程序进程：依赖不同的用户名进行区分。暂不考虑软件上限制同一用户多处同时登录的情况。
 

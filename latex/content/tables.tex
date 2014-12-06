@@ -2,68 +2,70 @@
 
 除特殊说明外，每张表的第一个字段为主键 (Primary Key)。
 
-\subsection{SystemConfig}\label{systemconfig}
+\subsection{system\_config}\label{systemux5fconfig}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idSystemConfig & int unsigned AUTO\_INCREMENT & &\tabularnewline
-NetworkMode & tinyint unsigned & StarRiver服务角色 & 0: 服务器, 1:
+id & int unsigned & & AI PK\tabularnewline
+network\_mode & tinyint unsigned & StarRiver服务角色 & 0: 服务器, 1:
 客户端。考虑同时作为多种角色与不同控制器通信的需求\tabularnewline
-NetworkPort & smallint unsigned & 服务器侦听端口 &\tabularnewline
-LastServerActivity & timestamp & StarRiver服务最近连接时间 &
+listening\_port & smallint unsigned & 服务器侦听端口 &\tabularnewline
+last\_server\_activity & timest\_amp & StarRiver服务最近连接时间 &
 StarRiver服务定时更新这个字段。\tabularnewline
-IntervalReportActivity & int unsigned & 更新最近连接时间间隔
+interval\_report\_activity & int unsigned & 更新最近连接时间间隔
 &\tabularnewline
-IntervalAutoStatusQuery & int unsigned & 自动查询控制器状态间隔
+interval\_status\_query & int unsigned & 自动查询控制器状态间隔
 &\tabularnewline
-IntervalAutoDeviceStatusQuery & int unsigned & 自动查询设备状态间隔
+interval\_device\_status\_query & int unsigned & 自动查询设备状态间隔
 &\tabularnewline
-IntervalRetryWrite & int unsigned & 连接建立期间，写操作重试间隔 &
+interval\_retry\_write & int unsigned & 连接建立期间，写操作重试间隔 &
 单位为毫秒\tabularnewline
-IntervalKeepalive & int unsigned & 心跳包发送间隔 &\tabularnewline
-TimeoutCmdAck & smallint unsigned & 指令响应超时 & CSA 6.1
+interval\_keepalive & int unsigned & 心跳包发送间隔 &\tabularnewline
+timeout\_cmd\_ack & smallint unsigned & 指令响应超时 & CSA 6.1
 T1\tabularnewline
-TimeoutCmdResult & smallint unsigned & 指令结果超时 & CSA 6.1
+timeout\_cmd\_result & smallint unsigned & 指令结果超时 & CSA 6.1
 T2\tabularnewline
-TimeoutEventAck & smallint unsigned & 事件响应超时 & CSA 6.2
+timeout\_event\_ack & smallint unsigned & 事件响应超时 & CSA 6.2
 T3\tabularnewline
-TimeoutIdle & smallint unsigned & 通信空闲时间 & CSA 6.3
+timeout\_idle & smallint unsigned & 通信空闲时间 & CSA 6.3
 T4\tabularnewline
-TimeoutKeepaliveAck & smallint unsigned & 心跳响应超时 & CSA 6.3
+timeout\_keepalive\_ack & smallint unsigned & 心跳响应超时 & CSA 6.3
 T5\tabularnewline
-RetryCmd & tinyint unsigned & 指令重试次数 & CSA 6.1 N1\tabularnewline
-RetryEvent & tinyint unsigned & 事件重试次数 & CSA 6.2 N2\tabularnewline
-RetryKeepalive & tinyint unsigned & 心跳重试次数 & CSA 6.3
+cmd\_retries & tinyint unsigned & 指令重试次数 & CSA 6.1
+N1\tabularnewline
+event\_retries & tinyint unsigned & 事件重试次数 & CSA 6.2
+N2\tabularnewline
+keepalive\_retries & tinyint unsigned & 心跳重试次数 & CSA 6.3
 N3\tabularnewline
-MapFormat & int & 地图类型 & 0: BMP, 1: GIS\tabularnewline
-EmergencyMode & int & 紧急调光模式 & 0: default brightness, 1: last
+map\_format & int & 地图类型 & 0: BMP, 1: GIS\tabularnewline
+emergency\_mode & int & 紧急调光模式 & 0: default brightness, 1: last
 brightness, 2: schedule\tabularnewline
-LastDeviceModeChange & timestamp & DeviceMode 表最后更新时间
+ts\_device\_mode & timest\_amp & deviceMode 表最后更新时间
 &\tabularnewline
-LastAutoPolicyChange & timestamp & AutoPolicy 表最后更新时间
+ts\_auto\_policy & timest\_amp & AutoPolicy 表最后更新时间
 &\tabularnewline
-LastTimeScheduleChange & timestamp & TimeSchedule 表最后更新时间
+ts\_time\_schedule & timest\_amp & Time\_schedule 表最后更新时间
 &\tabularnewline
-LastFrontendSceneChange & timestamp & FrontendScene 表最后更新时间
+ts\_frontend\_scene & timest\_amp & FrontendScene 表最后更新时间
 &\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{User}\label{user}
+\subsection{user}\label{user}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idUser & int unsigned & &\tabularnewline
-Username & varchar(64) & &\tabularnewline
-MD5 & varchar(40) & MD5(username+password) & 128-bit, 32 digits long hex
+id & int unsigned & &\tabularnewline
+username & varchar(64) & &\tabularnewline
+md5 & varchar(40) & MD5(username+password) & 128-bit, 32 digits long hex
 string\tabularnewline
-Admin & tinyint & 用户权限 & 0: StarRiver服务; 1: 一般用户, 2:
+permission & tinyint & 用户权限 & 0: StarRiver服务; 1: 一般用户, 2:
 管理员\tabularnewline
 first\_name & varchar(64) & &\tabularnewline
 last\_name & varchar(64) & &\tabularnewline
@@ -72,7 +74,7 @@ registration\_key & varchar(128) & & 预留注册用户名时使用\tabularnewli
 reset\_password\_key & varchar(128) & &
 预留重置密码时使用\tabularnewline
 registration\_id & varchar(128) & & 预留注册用户名时使用\tabularnewline
-Note & varchar(450) & 备注 & UTF8\tabularnewline
+note & varchar(450) & 备注 & UTF8\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -80,7 +82,7 @@ Note & varchar(450) & 备注 & UTF8\tabularnewline
 
 \begin{longtabu}[c]{@{}lll@{}}
 \toprule
-idUser & Username & 备注\tabularnewline
+id & username & note\tabularnewline
 \midrule
 \endhead
 0 & comm & StarRiver服务\tabularnewline
@@ -88,33 +90,34 @@ idUser & Username & 备注\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{Controller}\label{controller}
+\subsection{controller}\label{controller}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idController & int unsigned & &\tabularnewline
-Name & varchar(128) & &\tabularnewline
-MAC & binary(8) & 8字节控制器地址 &\tabularnewline
-CommProtocol & tinyint unsigned & 通信协议 & 0: Shanghai, 1: Sansi
+id & int unsigned & &\tabularnewline
+name & varchar(128) & &\tabularnewline
+addr & binary(8) & 8字节控制器地址 &\tabularnewline
+comm\_protocol & tinyint unsigned & 通信协议 & 0: Shanghai, 1: Sansi
 LC300, 2: CSA\tabularnewline
-DataProtocol & tinyint unsigned & 通信方式 & 0: 串口, 1: TCP, 2:
+data\_protocol & tinyint unsigned & 通信方式 & 0: 串口, 1: TCP, 2:
 UDP\tabularnewline
-ComPort & varchar(8) & 串口号 & COM0, COM1, ttyS0,
+com\_port & varchar(8) & 串口号 & COM0, COM1, ttyS0,
 ttyS1等\tabularnewline
-ComBaud & int unsigned & 串口波特率 & 9600, 115200等\tabularnewline
-ComAddr & tinyint unsigned & 使用485串口通信时指明地址 &\tabularnewline
-IPAddr & varchar(16) & & xxx.xxx.xxx.xxx\tabularnewline
-IPPort & smallint unsigned & &\tabularnewline
-Note & varchar(450) & 备注 & 比如位置信息\tabularnewline
-DisplayOrder & int unsigned & 前台程序界面上显示的顺序 &
+com\_baud & int unsigned & 串口波特率 & 9600, 115200等\tabularnewline
+com\_addr & tinyint unsigned & 使用485串口通信时指明地址
+&\tabularnewline
+ip\_addr & varchar(16) & & xxx.xxx.xxx.xxx\tabularnewline
+ip\_port & smallint unsigned & &\tabularnewline
+note & varchar(450) & 备注 & 比如位置信息\tabularnewline
+display\_order & int unsigned & 前台程序界面上显示的顺序 &
 不宜重复\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{ControllerStatus}\label{controllerstatus}
+\subsection{controller\_status}\label{controllerux5fstatus}
 
 状态量不支持查询的话对应字段写 \texttt{NULL}。
 
@@ -123,35 +126,36 @@ DisplayOrder & int unsigned & 前台程序界面上显示的顺序 &
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idController & int unsigned & Controller.idController &\tabularnewline
-CommState & tinyint unsigned & 通信状态 & 0: 正常, 1:
+controller\_id & int unsigned & controller.id &\tabularnewline
+comm\_state & tinyint unsigned & 通信状态 & 0: 正常, 1:
 故障\tabularnewline
-LoginState & tinyint unsigned & 是否已注册到StarRiver服务服务端 & 0:
+login\_state & tinyint unsigned & 是否已注册到StarRiver服务服务端 & 0:
 未注册, 1: 已注册\tabularnewline
-VersionSoftware & binary(4) & 软件版本 &\tabularnewline
-VersionSystem & binary(4) & 系统版本 &\tabularnewline
-VersionKernel & binary(4) & 内核版本 &\tabularnewline
-VersionHardware & binary(4) & 硬件版本 &\tabularnewline
-ManufacturerInfo & varchar(450) & 厂商信息文本内容 & UTF8\tabularnewline
-Type & binary(2) & 控制器类型 & 上海：\texttt{0x0001} =\textgreater{}
+version\_software & binary(4) & 软件版本 &\tabularnewline
+version\_system & binary(4) & 系统版本 &\tabularnewline
+version\_kernel & binary(4) & 内核版本 &\tabularnewline
+version\_hardware & binary(4) & 硬件版本 &\tabularnewline
+manufacturer\_info & varchar(450) & 厂商信息文本内容 &
+UTF8\tabularnewline
+type & binary(2) & 控制器类型 & 上海：\texttt{0x0001} =\textgreater{}
 485控制器, \texttt{0x0002} =\textgreater{} PLC控制器, \texttt{0x0003}
 =\textgreater{} 无线控制器。LC300 同上\tabularnewline
-WorkMode & binary(1) & 工作模式 & 上海：\texttt{0x01} =\textgreater{}
+work\_mode & binary(1) & 工作模式 & 上海：\texttt{0x01} =\textgreater{}
 远程控制模式, \texttt{0x02} =\textgreater{}
 时控工作模式。LC300同上。SrConfig程序初始化数据库时写
 \texttt{0xFF}，代表控制器尚未查询过。\tabularnewline
-StatusCode & binary(1) & 控制器状态代码 & 上海：\texttt{0x00}
+status\_code & binary(1) & 控制器状态代码 & 上海：\texttt{0x00}
 =\textgreater{} 正常工作, \texttt{0x01} =\textgreater{} 下行通道异常,
 \texttt{0x02} =\textgreater{} 升级模式, \texttt{0xFF} =\textgreater{}
 未知错误。LC300未描述。\tabularnewline
-LastTime & datetime & 最后一次从控制器读取的时间 &
+last\_time & datetime & 最后一次从控制器读取的时间 &
 用于检查控制器时间是否正常\tabularnewline
-SmsCount & smallint unsigned & 短信数量 &
+sms\_count & smallint unsigned & 短信数量 &
 从控制器读回来的\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{ControllerStatusChanges}\label{controllerstatuschanges}
+\subsection{controller\_status\_changes}\label{controllerux5fstatusux5fchanges}
 
 记录控制器状态变化。
 
@@ -160,30 +164,30 @@ SmsCount & smallint unsigned & 短信数量 &
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idController & int unsigned & Controller.idController &
-PK1\tabularnewline
+controller\_id & int unsigned & controller.id & PK1\tabularnewline
 field & varchar(32) & 被修改的字段名 & PK2\tabularnewline
 field\_value & varchar(255) & 变化后的字段值\tabularnewline
-time & timestamp & 修改时间 & PK3\tabularnewline
+time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
 
-目前记录如下两个状态的变化，由 \texttt{ControllerStatus} 表中名为
+目前记录如下两个状态的变化，由 \texttt{controller\_status} 表中名为
 \texttt{log\_controller\_changes} 的trigger执行：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  CommState: \texttt{field\_value} 存储 \texttt{CAST(CommState AS char)}
+  comm\_state: \texttt{field\_value} 存储
+  \texttt{CAST(comm\_state AS char)}
 \item
-  StatusCode: \texttt{field\_value} 存储 \texttt{HEX(StatusCode)}
+  status\_code: \texttt{field\_value} 存储 \texttt{HEX(status\_code)}
 \end{enumerate}
 
 每月执行的事件 \texttt{Delete outdated status history}
 会将超过365天前的记录删除。
 
-\subsection{ControllerSchedule}\label{controllerschedule}
+\subsection{controller\_schedule}\label{controllerux5fschedule}
 
 查询时控计划时把结果放到这张表里，将原来该控制器的删掉，再重新插入。
 
@@ -193,13 +197,13 @@ time & timestamp & 修改时间 & PK3\tabularnewline
 \midrule
 \endhead
 id & bigint unsigned & 自增ID &\tabularnewline
-idController & int unsigned & Controller.idController &\tabularnewline
-Item & varchar(128) & 时间亮度表的一项 & 上海：MM, DD, MM, DD, HH, mm,
+controller\_id & int unsigned & controller.id &\tabularnewline
+item & varchar(128) & 时间亮度表的一项 & 上海：MM, DD, MM, DD, HH, mm,
 ss, Addr, mode, value (逗号后不加空格)\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{ControllerSchedule\_edit}\label{controllerscheduleux5fedit}
+\subsection{controller\_schedule\_edit}\label{controllerux5fscheduleux5fedit}
 
 用户编辑时控计划时把结果放到这张表里。
 
@@ -209,134 +213,102 @@ ss, Addr, mode, value (逗号后不加空格)\tabularnewline
 \midrule
 \endhead
 id & bigint unsigned & 自增ID &\tabularnewline
-idController & int unsigned & Controller.idController &\tabularnewline
-Item & varchar(128) & 时间亮度表的一项 & 上海：MM, DD, MM, DD, HH, mm,
+controller\_id & int unsigned & controller.id &\tabularnewline
+item & varchar(128) & 时间亮度表的一项 & 上海：MM, DD, MM, DD, HH, mm,
 ss, Addr, mode, value (逗号后不加空格)\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{ControllerCellNumbers}\label{controllercellnumbers}
-
-控制器上的手机号。
-往控制器上面上载手机号，或者从控制器上下载手机号，都是一帧就完成了。
-删除手机号是把所有的手机号删除，不能只删除其中的一个。
+\subsection{device}\label{device}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-id & bigint unsigned & 自增ID &\tabularnewline
-idController & int unsigned & Controller.idController &\tabularnewline
-Cell & varchar(20) & 一个手机号 & 不支持国家代码\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{ControllerSms}\label{controllersms}
-
-从控制器里面读回来的短信内容放在这张表里面。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idController & int unsigned & Controller.idController &
-PK1\tabularnewline
-SmsIndex & smallint unsigned & 短信在设备中的序号 & PK2\tabularnewline
-SmsContent & varchar(450) & & UTF8\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{ControllerLog}\label{controllerlog}
-
-从控制器里面读回来的日志内容放在这张表里面。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idController & int unsigned & Controller.idController &
-PK1\tabularnewline
-LogTime & datetime & 日志记录时间 & PK2\tabularnewline
-LogContent & text & 日志内容 & UTF8\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{Device}\label{device}
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idDevice & int unsigned & &\tabularnewline
-Name & varchar(128) & &\tabularnewline
-MAC & binary(8) & &\tabularnewline
-DisplayOrder & int unsigned & 前台程序界面上显示的顺序 &\tabularnewline
-Note & varchar(450) & 备注，比如位置信息 & UTF8\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{DeviceStatus}\label{devicestatus}
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-VersionSoftware & binary(4) & 软件版本号 &
-LC300：只用2字节\tabularnewline
-VersionHardware & binary(4) & 硬件版本号 &
-LC300：只用2字节\tabularnewline
-ManufacturerInfo & varchar(450) & 厂商信息文本 &
-上海：厂商描述。LC300：终端设备产品信息，\textless{}=32字节，ASCII码。\tabularnewline
-ManufactureTime & datetime & 出厂时间 & LC300：无\tabularnewline
-Type & binary(4) & 设备类型 & 上海4.4.1 LC300 4.6.1
-\texttt{0x0E}\tabularnewline
-SN & varchar(64) & 产品序列号 &\tabularnewline
-InputVolt & double & 输入电压采样值 &\tabularnewline
-InputAmp & double & 输入电流采样值 &\tabularnewline
-OutputVolt & double & 输出电压采样值 &\tabularnewline
-OutputAmp & double & 输出电流采样值 &\tabularnewline
-ActivePower & double & 有功功率采样值 &\tabularnewline
-Temperature & smallint & 温度采样值 & LC300：1字节\tabularnewline
-TemperatureGuard & binary(4) & 过温保护状态 过温保护参数 & LC300 4.6
-\texttt{0x0A}\tabularnewline
-Uptime & int unsigned & 上电工作时间 &\tabularnewline
-UptimeTotal & int unsigned & 总工作时间 &\tabularnewline
-ElectricityConsumption & int unsigned & 消耗电量值 &\tabularnewline
-TransitionTime & tinyint unsigned & 调光渐变时间 &\tabularnewline
-Brightness & tinyint unsigned & 当前亮度 &\tabularnewline
-BrightnessMin & tinyint unsigned & 最小亮度值 &\tabularnewline
-BrightnessMax & tinyint unsigned & 最大亮度值 &\tabularnewline
-BrightnessMinPhysical & tinyint unsigned & 物理最小亮度值
+id & int unsigned & &\tabularnewline
+name & varchar(128) & &\tabularnewline
+addr & binary(8) & &\tabularnewline
+display\_order & int unsigned & 前台程序界面上显示的顺序
 &\tabularnewline
-BrightnessMaxPhysical & tinyint unsigned & 物理最大亮度值 &
+note & varchar(450) & 备注，比如位置信息 & UTF8\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{device\_mode}\label{deviceux5fmode}
+
+各控制器下各个设备的调光模式
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+controller\_addr & binary(8) & & PK1\tabularnewline
+device\_addr & binary(8) & & PK2\tabularnewline
+mode & int unsigned & & 0: manual, 1: auto, 2: schedule\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{device\_status}\label{deviceux5fstatus}
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+device\_id & int unsigned & device.id &\tabularnewline
+version\_software & binary(4) & 软件版本号 &
+LC300：只用2字节\tabularnewline
+version\_hardware & binary(4) & 硬件版本号 &
+LC300：只用2字节\tabularnewline
+manufacturer\_info & varchar(450) & 厂商信息文本 &
+上海：厂商描述。LC300：终端设备产品信息，\textless{}=32字节，ASCII码。\tabularnewline
+manufacture\_time & datetime & 出厂时间 & LC300：无\tabularnewline
+type & binary(4) & 设备类型 & 上海4.4.1 LC300 4.6.1
+\texttt{0x0E}\tabularnewline
+sn & varchar(64) & 产品序列号 &\tabularnewline
+input\_volt & double & 输入电压采样值 &\tabularnewline
+input\_amp & double & 输入电流采样值 &\tabularnewline
+output\_volt & double & 输出电压采样值 &\tabularnewline
+output\_amp & double & 输出电流采样值 &\tabularnewline
+active\_power & double & 有功功率采样值 &\tabularnewline
+temperature & smallint & 温度采样值 & LC300：1字节\tabularnewline
+temperatureGuard & binary(4) & 过温保护状态 过温保护参数 & LC300 4.6
+\texttt{0x0A}\tabularnewline
+uptime & int unsigned & 上电工作时间 &\tabularnewline
+total\_uptime & int unsigned & 总工作时间 &\tabularnewline
+electricity\_consumption & int unsigned & 消耗电量值 &\tabularnewline
+transition\_duration\_ & tinyint unsigned & 调光渐变时间
+&\tabularnewline
+brightness & tinyint unsigned & 当前亮度 &\tabularnewline
+brightness\_min & tinyint unsigned & 最小亮度值 &\tabularnewline
+brightness\_max & tinyint unsigned & 最大亮度值 &\tabularnewline
+brightness\_min\_physical & tinyint unsigned & 物理最小亮度值
+&\tabularnewline
+brightness\_max\_physical & tinyint unsigned & 物理最大亮度值 &
 LC300未定义\tabularnewline
-BrightnessPowerOn & tinyint unsigned & 上电亮度值 &\tabularnewline
-BrightnessDefault & tinyint unsigned & 默认故障亮度值 &\tabularnewline
-BrightnessCoefficiency & tinyint unsigned & 调光系数 & 实际亮度 =
+brightness\_power\_on & tinyint unsigned & 上电亮度值 &\tabularnewline
+brightness\_default & tinyint unsigned & 默认故障亮度值 &\tabularnewline
+brightness\_coefficiency & tinyint unsigned & 调光系数 & 实际亮度 =
 设置亮度 * 调光系数 / 100\tabularnewline
-Status & binary(1) & 设备状态 & 上海：4.5.1 LC300：4.6
+status & binary(1) & 设备状态 & 上海：4.5.1 LC300：4.6
 \texttt{0x06}\tabularnewline
-StatusComm & binary(1) & 通讯状态 & 上海：4.5.1\tabularnewline
-StatusLamp & binary(1) & 灯具状态 & 上海：4.5.1\tabularnewline
-SensorI & binary(4) & 光强传感器采样值 &
+comm\_status & binary(1) & 通讯状态 & 上海：4.5.1\tabularnewline
+lamp\_status & binary(1) & 灯具状态 & 上海：4.5.1\tabularnewline
+sensor\_i & binary(4) & 光强传感器采样值 &
 上海：光感亮度采样值\tabularnewline
 LC300：终端传感器设备光强值\tabularnewline
-SensorL & binary(4) & 光照传感器采样值 &
+sensor\_l & binary(4) & 光照传感器采样值 &
 LC300：终端传感器设备光照值\tabularnewline
-SensorH & binary(4) & 湿度传感器采样值 &\tabularnewline
-SensorT & binary(4) & 车流量传感器采样值 &\tabularnewline
-GroupMask & binary(32) & 分组掩码 & 一共256
+sensor\_h & binary(4) & 湿度传感器采样值 &\tabularnewline
+sensor\_t & binary(4) & 车流量传感器采样值 &\tabularnewline
+group\_mask & binary(32) & 分组掩码 & 一共256
 bit，若灯属于第N个组，则bit(N)=1。上海：组地址是1-254。LC300：组地址是0-63\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{DeviceStatus\_edit}\label{devicestatusux5fedit}
+\subsection{device\_status\_edit}\label{deviceux5fstatusux5fedit}
 
 StarRiver Config 在此记录用户录入的设备初始信息。
 
@@ -345,24 +317,24 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-TransitionTime & tinyint unsigned & 调光渐变时间 &\tabularnewline
-BrightnessMin & tinyint unsigned & 最小亮度值 &\tabularnewline
-BrightnessMax & tinyint unsigned & 最大亮度值 &\tabularnewline
-BrightnessMinPhysical & tinyint unsigned & 物理最小亮度值
+device\_id & int unsigned & device.id &\tabularnewline
+transition\_duration & tinyint unsigned & 调光渐变时间 &\tabularnewline
+brightness\_min & tinyint unsigned & 最小亮度值 &\tabularnewline
+brightness\_max & tinyint unsigned & 最大亮度值 &\tabularnewline
+brightness\_min\_physical & tinyint unsigned & 物理最小亮度值
 &\tabularnewline
-BrightnessMaxPhysical & tinyint unsigned & 物理最大亮度值 &
+brightness\_max\_physical & tinyint unsigned & 物理最大亮度值 &
 LC300未定义\tabularnewline
-BrightnessPowerOn & tinyint unsigned & 上电亮度值 &\tabularnewline
-BrightnessDefault & tinyint unsigned & 默认故障亮度值 &\tabularnewline
-BrightnessCoefficiency & tinyint unsigned & 调光系数 & 实际亮度 =
+brightness\_power\_on & tinyint unsigned & 上电亮度值 &\tabularnewline
+brightness\_default & tinyint unsigned & 默认故障亮度值 &\tabularnewline
+brightness\_coefficiency & tinyint unsigned & 调光系数 & 实际亮度 =
 设置亮度 * 调光系数 / 100\tabularnewline
-GroupMask & binary(32) & 分组掩码 & 一共256
+group\_mask & binary(32) & 分组掩码 & 一共256
 bit，若灯属于第N个组，则bit(N)=1。上海：组地址是1-254。LC300：组地址是0-63。\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{DeviceStatusChanges}\label{devicestatuschanges}
+\subsection{device\_status\_changes}\label{deviceux5fstatusux5fchanges}
 
 记录设备状态变化。
 
@@ -371,27 +343,27 @@ bit，若灯属于第N个组，则bit(N)=1。上海：组地址是1-254。LC300�
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idDevice & int unsigned & Device.idDevice & PK1\tabularnewline
+device\_id & int unsigned & device.id & PK1\tabularnewline
 field & varchar(32) & 被修改的字段名 & PK2\tabularnewline
 field\_value & varchar(255) & 变化后的字段值 &\tabularnewline
-time & timestamp & 修改时间 & PK3\tabularnewline
+time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
 
-目前记录如下三个状态的变化，由DeviceStatus表中名为log\_changes的trigger执行：
+目前记录如下三个状态的变化，由device\_status表中名为log\_changes的trigger执行：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  Status: \texttt{field\_value} 存储 \texttt{HEX(Status)}
+  status: \texttt{field\_value} 存储 \texttt{HEX(status)}
 \item
-  StatusComm: \texttt{field\_value} 存储 \texttt{HEX(StatusComm)}
+  comm\_status: \texttt{field\_value} 存储 \texttt{HEX(comm\_status)}
 \item
-  StatusLamp: \texttt{field\_value} 存储 \texttt{HEX(StatusLamp)}
+  lamp\_status: \texttt{field\_value} 存储 \texttt{HEX(lamp\_status)}
 \end{enumerate}
 
-\subsection{DeviceStatusHistory*}\label{devicestatushistory}
+\subsection{device\_status\_history*}\label{deviceux5fstatusux5fhistory}
 
 以下三张表的字段定义大部分相同，分别记录不同粒度的状态量历史。
 
@@ -399,11 +371,11 @@ time & timestamp & 修改时间 & PK3\tabularnewline
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  DeviceStatusHistory
+  device\_status\_history
 \item
-  DeviceStatusHistory\_hourly
+  device\_status\_history\_hourly
 \item
-  DeviceStatusHistory\_daily
+  device\_status\_history\_daily
 \end{enumerate}
 
 三张表共同部分的定义如下：
@@ -413,10 +385,10 @@ time & timestamp & 修改时间 & PK3\tabularnewline
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idDevice & int unsigned & Device.idDevice & PK1\tabularnewline
+device\_id & int unsigned & device.id & PK1\tabularnewline
 field & varchar(32) & 被修改的字段名 & PK2\tabularnewline
 field\_value & double & 字段采样值 &\tabularnewline
-time & timestamp & 修改时间 & PK3\tabularnewline
+time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -426,9 +398,9 @@ time & timestamp & 修改时间 & PK3\tabularnewline
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  DeviceStatusHistory\_hourly
+  device\_status\_history\_hourly
 \item
-  DeviceStatusHistory\_daily
+  device\_status\_history\_daily
 \end{enumerate}
 
 峰谷值定义如下:
@@ -451,7 +423,7 @@ field\_min & double & 汇总时段内最小采样值 &
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  每5分钟，对 \texttt{DeviceStatus} 进行采样，记录设备的状态量。
+  每5分钟，对 \texttt{device\_status} 进行采样，记录设备的状态量。
 \item
   每天，将前一天的采样归纳成每小时均值。删除3天前的采样。
 \item
@@ -459,9 +431,9 @@ field\_min & double & 汇总时段内最小采样值 &
 \end{enumerate}
 
 每月执行的事件 \texttt{Delete outdated status history} 会将
-\texttt{DeviceStatusHistory\_daily} 中超过365天前的记录删除。
+\texttt{device\_status\_history\_daily} 中超过365天前的记录删除。
 
-\subsection{DeviceSchedule}\label{deviceschedule}
+\subsection{device\_schedule}\label{deviceux5fschedule}
 
 LCP-SH-D：该功能是在单灯控制器与集中控制器失去联系后采用的异常模式，如果在某一时间段内没有设置该亮度值的话，将采用默认故障亮度值显示。
 
@@ -476,147 +448,25 @@ LC300没有定义。
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idDeviceSchedule & bigint unsigned & 自增ID &\tabularnewline
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-Item & varchar(32) & 自动亮度表的一项 & HH,mm,value\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{DeviceScene}\label{devicescene}
-
-LCP-SH-D协议场景号是1-254。 LC300协议，场景号是1-16，0表示无场景。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idDeviceScene & tinyint unsigned & &\tabularnewline
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-Brightness & tinyint unsigned & 灯的场景亮度值 & 0-100\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{DeviceReportCond}\label{devicereportcond}
-
-信息上报条件。用于保存要给哪些灯设置信息上报条件。
-
-LC300未定义。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
 id & bigint unsigned & 自增ID &\tabularnewline
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-Item & varchar(128) & 信息上报的一项 & StatusID,low,high\tabularnewline
+device\_id & int unsigned & device.id &\tabularnewline
+item & varchar(32) & 自动亮度表的一项 & HH,mm,value\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{DeviceAlarmCond}\label{devicealarmcond}
-
-报警阈值条件。用于保存要给哪些灯设置报警阈值条件。
-
-LC300未定义。
+\subsection{firmware}\label{firmware}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-id & bigint unsigned & 自增ID &\tabularnewline
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-Item & varchar(450) & 报警阈值的一项 & StatusID, low, high, warn\_msg
-（逗号后不加空格）\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{DeviceMessages}\label{devicemessages}
-
-和上面两张表相关，上面设置了信息上报条件，这样对上报上来的信息应该有一个地方记住。同一个类型的上报报警信息，如果报了两条，则后面的那条应该把前面那条覆盖掉。
-
-LC300未定义。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-id & bigint unsigned & 自增ID &\tabularnewline
-idDevice & int unsigned & Device.idDevice &\tabularnewline
-MsgTime & timestamp & &\tabularnewline
-Item & varchar(450) & 报警阈值的一项 & StatusID,value,msg
-(若非报警，msg留空)\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{TaskTodo}\label{tasktodo}
-
-待处理的用户操作。
-
-服务器进程每隔一段时间在这里取任务，分别处理。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-id & bigint unsigned & 自增ID & 当流水号\tabularnewline
-Time & datetime & &\tabularnewline
-idUser & int unsigned & User.idUser &\tabularnewline
-Command & smallint unsigned & 操作类型 &\tabularnewline
-Parameters & varchar(1024) & 操作的参数 &\tabularnewline
-MD5 & varchar(40) & 命令的MD5散列值 & md5(Time + idUser + Command +
-Parameters)
-作为查询条件供前段程序在TaskDone中查询任务完成状态\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\begin{quote}
-\textbf{注意}：这个表使用MyISAM引擎存储。自增的id字段如果使用InnoDB存储，计数器在内存里，数据库服务器一旦重启，又将从1开始计数，完成任务后向
-\texttt{TaskDone} 中插入记录会引发冲突导致失败。
-\end{quote}
-
-\subsection{TaskDone}\label{taskdone}
-
-记录那些已完成的用户操作。
-
-\texttt{TaskTodo} 中的任务，处理完毕后，从 \texttt{TaskTodo}
-删除，将结果插入到表 \texttt{TaskDone} ，保持 \texttt{TaskTodo}
-中字段信息不变。
-
-除了 \texttt{TaskTodo} 的字段，另有以下字段：
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-FinishedTime & timestamp & 完成时间 &
-插入记录时由数据库自动生成\tabularnewline
-ReturnCode & smallint & 返回代码 & 成功：0；失败：控制器返回的确认码
-bitwise-OR；控制器未能返回结果（如超时）：-2。\tabularnewline
-ErrorMsg & varchar(255) & 错误描述信息 & UTF8\tabularnewline
-\bottomrule
-\end{longtabu}
-
-有一个 event (\emph{Remove outdated tasks from TaskDone})
-每周清理创建时间在14天之前的任务，以保证这张表不会无限膨胀下去。
-
-\subsection{Firmware}\label{firmware}
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idFirmware & int unsigned & &\tabularnewline
-Firmware & mediumblob & 二进制内容 &\tabularnewline
-FirmwareMD5 & char(32) & md5(Firmware) &\tabularnewline
-FirmwareName & varchar(64) & 固件包名称 & 终端用\tabularnewline
-FirmwareVersion & binary(4) & 固件版本号 & 终端用\tabularnewline
-Note & varchar(300) & & UTF8\tabularnewline
+id & int unsigned & &\tabularnewline
+content & mediumblob & 二进制内容 &\tabularnewline
+hash & char(32) & md5(content) &\tabularnewline
+name & varchar(64) & 固件包名称 & 终端用\tabularnewline
+version & binary(4) & 固件版本号 & 终端用\tabularnewline
+note & varchar(300) & & UTF8\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -624,21 +474,42 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 
 \texttt{max\_allowed\_packet=16M}
 
-\subsection{FrontendMapBmp}\label{frontendmapbmp}
+\subsection{frontend\_map\_bmp}\label{frontendux5fmapux5fbmp}
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idFrontendMapBmp & tinyint unsigned & &\tabularnewline
-Name & varchar(64) & &\tabularnewline
-DisplayOrder & tinyint unsigned & 前台程序界面上显示地图的顺序 &
+id & tinyint unsigned & &\tabularnewline
+name & varchar(64) & &\tabularnewline
+display\_order & tinyint unsigned & 前台程序界面上显示地图的顺序 &
 不宜重复\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{FrontendGroup}\label{frontendgroup}
+\subsection{frontend\_device\_map}\label{frontendux5fdeviceux5fmap}
+
+描述各种设备在BMP地图上的信息。
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+frontend\_map\_bmp\_id & int unsigned & frontend\_map\_bmp.id &
+PK1\tabularnewline
+device\_type & tinyint unsigned & 表明设备类型，如控制器、灯等 &
+PK2\tabularnewline
+device\_id & int unsigned & device.id or controller.id &
+PK3\tabularnewline
+pos\_x & int & 设备在地图上的横坐标 &\tabularnewline
+pos\_y & int & 设备在地图上的纵坐标 &\tabularnewline
+icon\_id & tinyint unsigned & & 对应的图标文件必须存在\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{frontend\_group}\label{frontendux5fgroup}
 
 对于LCP-SH-D和LC300协议：现在用户的组和灯的组是统一的，即用户的第一个组就是所有灯的第一个组；对于CSA来说，一个用户的组可能对应控制器1的网关ID1和控制器2的网关ID2，所以还要建一张表来指定用户组和控制器里网关ID的关系(有点像以前LC200)。
 
@@ -647,13 +518,30 @@ DisplayOrder & tinyint unsigned & 前台程序界面上显示地图的顺序 &
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idFrontendGroup & tinyint unsigned & &\tabularnewline
-Name & varchar(64) & &\tabularnewline
-Color & tinyint unsigned & & Config程序里作为选项\tabularnewline
+id & tinyint unsigned & &\tabularnewline
+name & varchar(64) & &\tabularnewline
+color & tinyint unsigned & & Config程序里作为选项\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{FrontendScene}\label{frontendscene}
+\subsection{frontend\_group\_devices}\label{frontendux5fgroupux5fdevices}
+
+描述灯属于哪个组。
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+frontend\_group\_id & tinyint unsigned & frontend\_group.id &
+PK1\tabularnewline
+device\_id & int unsigned & device.id & PK2\tabularnewline
+device\_display\_order & int unsigned & 界面显示该组内的灯时的序号 &
+不宜重复\tabularnewline
+\bottomrule
+\end{longtabu}
+
+\subsection{frontend\_scene}\label{frontendux5fscene}
 
 这是用户定义的场景。
 
@@ -662,13 +550,13 @@ Color & tinyint unsigned & & Config程序里作为选项\tabularnewline
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idFrontendScene & int unsigned & &\tabularnewline
-Name & varchar(64) & &\tabularnewline
-DisplayOrder & int unsigned & & 不宜重复\tabularnewline
+id & int unsigned & &\tabularnewline
+name & varchar(64) & &\tabularnewline
+display\_order & int unsigned & & 不宜重复\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{FrontendSceneItem}\label{frontendsceneitem}
+\subsection{frontend\_scene\_item}\label{frontendux5fsceneux5fitem}
 
 这是用户定义的场景。
 
@@ -678,7 +566,7 @@ DisplayOrder & int unsigned & & 不宜重复\tabularnewline
 \midrule
 \endhead
 id & bigint unsigned & &\tabularnewline
-scene\_id & int unsigned & &\tabularnewline
+scene\_id & int unsigned & & frontend\_scene.id\tabularnewline
 device\_addr & binary(8) & &
 可以是单灯地址，也可以是组地址\tabularnewline
 mode & int unsigned & & 0: manual, 1: auto, 2: schedule\tabularnewline
@@ -687,7 +575,7 @@ schedule\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{FrontendControllerDevices}\label{frontendcontrollerdevices}
+\subsection{frontend\_controller\_devices}\label{frontendux5fcontrollerux5fdevices}
 
 描述灯属于哪个控制器。
 
@@ -698,55 +586,16 @@ schedule\tabularnewline
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-idController & int unsigned & Controller.idController &
-PK1\tabularnewline
-idDevice & int unsigned & Device.idDevice & PK2\tabularnewline
-DeviceDisplayOrder & int unsigned & 界面显示该控制器下的灯时的序号
+controller\_id & int unsigned & controller.id & PK1\tabularnewline
+device\_id & int unsigned & device.id & PK2\tabularnewline
+device\_display\_order & int unsigned & 界面显示该控制器下的灯时的序号
 &\tabularnewline
-PortOnController & smallint unsigned & 灯在控制器的哪个口上 &
+port\_on\_controller & smallint unsigned & 灯在控制器的哪个口上 &
 可能不需要\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{FrontendGroupDevices}\label{frontendgroupdevices}
-
-描述灯属于哪个组。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idFrontendGroup & tinyint unsigned & FrontendGroup. idFrontendGroup &
-PK1\tabularnewline
-idDevice & int unsigned & Device.idDevice & PK2\tabularnewline
-DeviceDisplayOrder & int unsigned & 界面显示该组内的灯时的序号 &
-不宜重复\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{FrontendDeviceMap}\label{frontenddevicemap}
-
-描述各种设备在BMP地图上的信息。
-
-\begin{longtabu}[c]{@{}lXXX@{}}
-\toprule
-字段名 & 类型 & 含义 & 备注\tabularnewline
-\midrule
-\endhead
-idFrontendMapBmp & int unsigned & FrontendMapBmp. idFrontendMapBmp &
-PK1\tabularnewline
-DeviceType & tinyint unsigned & 表明设备类型，如控制器、灯等 &
-PK2\tabularnewline
-idDevice & int unsigned & Device.idDevice or Controller.idController &
-PK3\tabularnewline
-PosX & int & 设备在地图上的横坐标 &\tabularnewline
-PosY & int & 设备在地图上的纵坐标 &\tabularnewline
-idIcon & tinyint unsigned & & 对应的图标文件必须存在\tabularnewline
-\bottomrule
-\end{longtabu}
-
-\subsection{Sensor}\label{sensor}
+\subsection{sensor}\label{sensor}
 
 传感器信息。
 
@@ -759,7 +608,7 @@ id & int unsigned & &\tabularnewline
 name & varchar(255) & &\tabularnewline
 type & int unsigned & & 0: virtual, 1: brightness, 2:
 traffic\tabularnewline
-source & varchar(255) & & ``controller\_mac,port(1-4)'' for those
+source & varchar(255) & & ``controller\_addr,port(1-4)'' for those
 attached on a controller; ``ip,port,user,pass,sql'' for those available
 in a database\tabularnewline
 raw\_value & double & &\tabularnewline
@@ -769,7 +618,7 @@ source code.\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{AutoPolicy}\label{autopolicy}
+\subsection{auto\_policy}\label{autoux5fpolicy}
 
 自动调光策略。
 
@@ -785,7 +634,7 @@ sensor\_id & int unsigned & Sensor.id &\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{AutoPolicyItem}\label{autopolicyitem}
+\subsection{auto\_policy\_item}\label{autoux5fpolicyux5fitem}
 
 自动调光策略单项。
 
@@ -795,18 +644,18 @@ sensor\_id & int unsigned & Sensor.id &\tabularnewline
 \midrule
 \endhead
 id & bigint unsigned & &\tabularnewline
-id\_policy & int unsigned & AutoPolicy.id &\tabularnewline
+auto\_policy\_id & int unsigned & auto\_policy.id &\tabularnewline
 input & bigint unsigned & & {[}0,100{]}\tabularnewline
 output & bigint unsigned & & {[}0,100{]}\tabularnewline
 type & bigint unsigned & & 0: calculated, 1: user defined\tabularnewline
 \bottomrule
 \end{longtabu}
 
-对于每个 \texttt{id\_policy} ，都应生成101个策略项，分别对应
+对于每个 \texttt{auto\_policy} ，都应生成101个策略项，分别对应
 \texttt{input}
 为0到100的情形。其中若干项是用户设定的，其余是插值计算而得。
 
-\subsection{TimeSchedule}\label{timeschedule}
+\subsection{time\_schedule}\label{timeux5fschedule}
 
 调光时间表。
 
@@ -821,7 +670,7 @@ display\_order & int unsigned & &\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{TimeScheduleItem}\label{timescheduleitem}
+\subsection{time\_schedule\_item}\label{timeux5fscheduleux5fitem}
 
 调光时间表的逐条记录。
 
@@ -831,23 +680,61 @@ display\_order & int unsigned & &\tabularnewline
 \midrule
 \endhead
 id & bigint unsigned & &\tabularnewline
-idTimeSchedule & int unsigned & &\tabularnewline
+time\_schedule\_id & int unsigned & & time\_schedule.id\tabularnewline
 name & varchar(255) & & MM, DD, MM, DD, HH:mm:ss,
 brightness\tabularnewline
 \bottomrule
 \end{longtabu}
 
-\subsection{DeviceMode}\label{devicemode}
+\subsection{task\_todo}\label{taskux5ftodo}
 
-各控制器下各个设备的调光模式
+待处理的用户操作。
+
+服务器进程每隔一段时间在这里取任务，分别处理。
 
 \begin{longtabu}[c]{@{}lXXX@{}}
 \toprule
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-controller\_addr & binary(8) & & PK1\tabularnewline
-device\_addr & binary(8) & & PK2\tabularnewline
-mode & int unsigned & & 0: manual, 1: auto, 2: schedule\tabularnewline
+id & bigint unsigned & 自增ID & 当流水号\tabularnewline
+time & datetime & &\tabularnewline
+user\_id & int unsigned & user.id &\tabularnewline
+cmd & smallint unsigned & 操作类型 &\tabularnewline
+param & varchar(1024) & 操作的参数 &\tabularnewline
+hash & varchar(40) & 命令的MD5散列值 & md5(time + user\_id + cmd +
+param) 作为查询条件供前段程序在 \texttt{task\_done}
+中查询任务完成状态\tabularnewline
 \bottomrule
 \end{longtabu}
+
+\begin{quote}
+\textbf{注意}：这个表使用MyISAM引擎存储。自增的id字段如果使用InnoDB存储，计数器在内存里，数据库服务器一旦重启，又将从1开始计数，完成任务后向
+\texttt{task\_done} 中插入记录会引发冲突导致失败。
+\end{quote}
+
+\subsection{task\_done}\label{taskux5fdone}
+
+记录那些已完成的用户操作。
+
+\texttt{task\_todo} 中的任务，处理完毕后，从 \texttt{task\_todo}
+删除，将结果插入到表 \texttt{task\_done} ，保持 \texttt{task\_todo}
+中字段信息不变。
+
+除了 \texttt{task\_todo} 的字段，另有以下字段：
+
+\begin{longtabu}[c]{@{}lXXX@{}}
+\toprule
+字段名 & 类型 & 含义 & 备注\tabularnewline
+\midrule
+\endhead
+finished & timest\_amp & 完成时间 &
+插入记录时由数据库自动生成\tabularnewline
+return\_code & smallint & 返回代码 & 成功：0；失败：控制器返回的确认码
+bitwise-OR；控制器未能返回结果（如超时）：-2。\tabularnewline
+message & varchar(255) & 错误描述信息 & UTF8\tabularnewline
+\bottomrule
+\end{longtabu}
+
+有一个 event (\emph{Remove outdated tasks from TaskDone})
+定期清理创建早前的任务，以保证这张表不会无限膨胀下去。

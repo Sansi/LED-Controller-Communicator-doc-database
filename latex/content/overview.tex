@@ -8,11 +8,11 @@ StarRiver服务采用异步通信方式，除非有明确的时序关系，否�
 
 \begin{itemize}
 \item
-  \textbf{TaskTodo}:
+  \textbf{\texttt{task\_todo}}:
   记录待操作的命令。前台程序添加的用户指令，或是StarRiver服务添加的定时操作。
 \item
-  \textbf{TaskDone}: 记录已完成的命令的结果。命令完成后会从 TaskTodo
-  中删除，并在此插入一条记录。
+  \textbf{\texttt{task\_done}}: 记录已完成的命令的结果。命令完成后会从
+  \texttt{task\_todo} 中删除，并在此插入一条记录。
 \end{itemize}
 
 \subsection{表的命名规则}\label{ux8868ux7684ux547dux540dux89c4ux5219}
@@ -20,25 +20,24 @@ StarRiver服务采用异步通信方式，除非有明确的时序关系，否�
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  控制器相关的表，加 \texttt{Controller} 前缀；
+  控制器相关的表，加 \texttt{controller\_} 前缀；
 \item
-  终端设备相关的表，加 \texttt{Device} 前缀；
+  终端设备相关的表，加 \texttt{device\_} 前缀；
 \item
-  前台程序相关的表，加 \texttt{Frontend} 前缀。
+  前台程序相关的表，加 \texttt{frontend\_} 前缀。
 \end{itemize}
 
 \subsection{表中读写的字段}\label{ux8868ux4e2dux8bfbux5199ux7684ux5b57ux6bb5}
 
-除非明确指出，否则前台程序从 \texttt{Controller*} 和 \texttt{Device*}
-表中读数据，写操作主要在 \texttt{Frontend*} 和 \texttt{TaskTodo}
+除非明确指出，否则前台程序从 \texttt{controller*} 和 \texttt{device*}
+表中读数据，写操作主要在 \texttt{frontend*} 和 \texttt{task\_todo}
 中进行。
 
-StarRiver服务不写 \texttt{Frontend*} 表。
+StarRiver服务不写 \texttt{frontend*} 表。
 
-前台程序和StarRiver服务时间同步：如果有 Internet 连接，都与
-\texttt{cn.pool.ntp.org} NTP
-服务器对时；否则可以考虑在局域网内由一台Windows Server 或 Linux 主机作为
-NTP 服务器，其他主机与该主机对时。
+前台程序和 StarRiver 服务器的时间同步：如果有 Internet 连接，都与
+\texttt{cn.pool.ntp.org} NTP 服务器对时；否则可以考虑在局域网内由一台
+Windows Server 或 Linux 主机作为 NTP 服务器，其他主机与该主机对时。
 
 多个前台程序进程：依赖不同的用户名进行区分。暂不考虑软件上限制同一用户多处同时登录的情况。
 

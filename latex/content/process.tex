@@ -6,20 +6,20 @@
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  前台线程往 \texttt{TaskTodo} 插一条记录
+  前台线程往 \texttt{task\_todo} 插一条记录
 \item
-  StarRiver服务从 \texttt{TaskTodo} 读记录
+  StarRiver服务从 \texttt{task\_todo} 读记录
 \item
   StarRiver服务执行，对相关的表进行必要的更新，然后把结果写到
-  \texttt{TaskDone} 。
+  \texttt{task\_done} 。
 \item
-  前台线程从 \texttt{TaskDone} 读结果，去相应表读数据，然后显示。
+  前台线程从 \texttt{task\_done} 读结果，去相应表读数据，然后显示。
 \end{enumerate}
 
 \subsection{前台上载文件}\label{ux524dux53f0ux4e0aux8f7dux6587ux4ef6}
 
 暂定：配置一个文件服务器，协议可以从 FTP、HTTP、Samba、NFS 中选择。
 
-前台程序往服务器上传一个文件后记录该文件的URI 。
+前台程序往服务器上传一个文件后记录该文件的 URI 。
 
 StarRiver服务通过参数中读到的 URI 提取该文件。
