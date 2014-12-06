@@ -165,11 +165,11 @@
 |output_amp| double  |输出电流采样值 ||
 |active_power |double  |有功功率采样值 ||
 |temperature |smallint |温度采样值| LC300：1字节|
-|temperatureGuard|binary(4) |过温保护状态 过温保护参数| LC300 4.6 `0x0A`|
+|temperature_guard|binary(4) |过温保护状态 过温保护参数| LC300 4.6 `0x0A`|
 |uptime|int unsigned |上电工作时间||
 |total_uptime |int unsigned |总工作时间| |
 |electricity_consumption|int unsigned |消耗电量值| |
-|transition_duration_|tinyint unsigned |调光渐变时间||
+|transition_duration|tinyint unsigned |调光渐变时间||
 |brightness|tinyint unsigned |当前亮度||
 |brightness_min| tinyint unsigned |最小亮度值| |
 |brightness_max| tinyint unsigned | 最大亮度值| |
@@ -181,8 +181,7 @@
 |status|binary(1) |设备状态|上海：4.5.1 LC300：4.6 `0x06`|
 |comm_status|binary(1) |通讯状态|上海：4.5.1|
 |lamp_status|binary(1) |灯具状态|上海：4.5.1|
-|sensor_i |binary(4) |光强传感器采样值|上海：光感亮度采样值|
-|LC300：终端传感器设备光强值|
+|sensor_i |binary(4) |光强传感器采样值|上海：光感亮度采样值, LC300：终端传感器设备光强值|
 |sensor_l |binary(4) |光照传感器采样值|LC300：终端传感器设备光照值|
 |sensor_h |binary(4) |湿度传感器采样值||
 |sensor_t |binary(4) |车流量传感器采样值| |
@@ -454,4 +453,4 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |return_code|smallint |返回代码|成功：0；失败：控制器返回的确认码 bitwise-OR；控制器未能返回结果（如超时）：-2。|
 |message|varchar(255) | 错误描述信息|UTF8|
 
-有一个 event (*Remove outdated tasks from TaskDone*) 定期清理创建早前的任务，以保证这张表不会无限膨胀下去。
+有一个 event `Remove outdated tasks from TaskDone*` 定期清理创建早前的任务，以保证这张表不会无限膨胀下去。
