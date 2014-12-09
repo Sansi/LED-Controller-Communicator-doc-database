@@ -25,10 +25,10 @@
 | keepalive_retries     | tinyint unsigned  | 心跳重试次数    | CSA 6.3 N3    |
 | map_format    | int   | 地图类型  | 0: BMP, 1: GIS    |
 | emergency_mode    | int   | 紧急调光模式    | 0: default brightness, 1: last brightness, 2: schedule    |
-| ts_device_mode    | timest_amp     | deviceMode 表最后更新时间    |   |
-| ts_auto_policy    | timest_amp     | AutoPolicy 表最后更新时间    |   |
-| ts_time_schedule  | timest_amp     | Time_schedule 表最后更新时间  |   |
-| ts_frontend_scene     | timest_amp     | FrontendScene 表最后更新时间     |   |
+| ts_device_mode    | timest_amp     | device_mode 表最后更新时间    | 由服务端更新 |
+| ts_auto_policy    | timest_amp     | auto_policy 表最后更新时间    | 由客户端更新 |
+| ts_time_schedule  | timest_amp     | time_schedule 表最后更新时间  | 由客户端更新 |
+| ts_frontend_scene     | timest_amp     | frontend_scene 表最后更新时间 | 由客户端更新 |
 
 ## user
 
@@ -98,7 +98,7 @@
 | --- | --- | --- | --- |
 |controller_id|int unsigned|controller.id |PK1|
 |field| varchar(32) |被修改的字段名| PK2|
-|field_value |varchar(255)|变化后的字段值 |
+|field_value |varchar(255)|变化后的字段值 ||
 |time|timest_amp | 修改时间|PK3|
 
 目前记录如下两个状态（亦即 `field` 的合法取值）的变化，由 `controller_status` 表中名为 `log_controller_changes` 的trigger执行：
@@ -393,7 +393,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |id|int unsigned|||
 |name|varchar(255) |||
 |display_order|int unsigned|||
-|sensor_id|int unsigned|Sensor.id| |
+|sensor_id|int unsigned|sensor.id| 可以是实际存在的，也可以是虚拟的传感器 |
 
 ## auto_policy_item
 
@@ -417,7 +417,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 | --- | --- | --- | --- |
 |id|int unsigned|||
 |name|varchar(255) |||
-|display_order|int unsigned|||
+|display_order|int unsigned ||不应重复|
 
 ## time_schedule_item
 

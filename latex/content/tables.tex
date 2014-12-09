@@ -43,14 +43,14 @@ N3\tabularnewline
 map\_format & int & 地图类型 & 0: BMP, 1: GIS\tabularnewline
 emergency\_mode & int & 紧急调光模式 & 0: default brightness, 1: last
 brightness, 2: schedule\tabularnewline
-ts\_device\_mode & timest\_amp & deviceMode 表最后更新时间
-&\tabularnewline
-ts\_auto\_policy & timest\_amp & AutoPolicy 表最后更新时间
-&\tabularnewline
-ts\_time\_schedule & timest\_amp & Time\_schedule 表最后更新时间
-&\tabularnewline
-ts\_frontend\_scene & timest\_amp & FrontendScene 表最后更新时间
-&\tabularnewline
+ts\_device\_mode & timest\_amp & device\_mode 表最后更新时间 &
+由服务端更新\tabularnewline
+ts\_auto\_policy & timest\_amp & auto\_policy 表最后更新时间 &
+由客户端更新\tabularnewline
+ts\_time\_schedule & timest\_amp & time\_schedule 表最后更新时间 &
+由客户端更新\tabularnewline
+ts\_frontend\_scene & timest\_amp & frontend\_scene 表最后更新时间 &
+由客户端更新\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -166,7 +166,7 @@ sms\_count & smallint unsigned & 短信数量 &
 \endhead
 controller\_id & int unsigned & controller.id & PK1\tabularnewline
 field & varchar(32) & 被修改的字段名 & PK2\tabularnewline
-field\_value & varchar(255) & 变化后的字段值\tabularnewline
+field\_value & varchar(255) & 变化后的字段值 &\tabularnewline
 time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
@@ -649,7 +649,8 @@ source code.\tabularnewline
 id & int unsigned & &\tabularnewline
 name & varchar(255) & &\tabularnewline
 display\_order & int unsigned & &\tabularnewline
-sensor\_id & int unsigned & Sensor.id &\tabularnewline
+sensor\_id & int unsigned & sensor.id &
+可以是实际存在的，也可以是虚拟的传感器\tabularnewline
 \bottomrule
 \end{longtabu}
 
@@ -685,7 +686,7 @@ type & bigint unsigned & & 0: calculated, 1: user defined\tabularnewline
 \endhead
 id & int unsigned & &\tabularnewline
 name & varchar(255) & &\tabularnewline
-display\_order & int unsigned & &\tabularnewline
+display\_order & int unsigned & & 不应重复\tabularnewline
 \bottomrule
 \end{longtabu}
 
