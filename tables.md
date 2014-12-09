@@ -101,10 +101,10 @@
 |field_value |varchar(255)|变化后的字段值 |
 |time|timest_amp | 修改时间|PK3|
 
-目前记录如下两个状态的变化，由 `controller_status` 表中名为 `log_controller_changes` 的trigger执行：
+目前记录如下两个状态（亦即 `field` 的合法取值）的变化，由 `controller_status` 表中名为 `log_controller_changes` 的trigger执行：
 
-1. comm_state: `field_value` 存储 `CAST(comm_state AS char)`
-2. status_code: `field_value` 存储 `HEX(status_code)`
+1. "comm_state": `field_value` 存储 `CAST(comm_state AS char)`
+2. "status_code": `field_value` 存储 `HEX(status_code)`
 
 每月执行的事件 `Delete outdated status history` 会将超过365天前的记录删除。
 
@@ -215,11 +215,11 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 |field_value |varchar(255)|变化后的字段值 ||
 |time|timest_amp  |修改时间|PK3|
 
-目前记录如下三个状态的变化，由device_status表中名为log_changes的trigger执行：
+目前记录如下三个状态（亦即 `field` 的合法取值）的变化，由device_status表中名为log_changes的trigger执行：
 
-1. status: `field_value` 存储 `HEX(status)`
-2. comm_status: `field_value` 存储 `HEX(comm_status)`
-3. lamp_status: `field_value` 存储 `HEX(lamp_status)`
+1. "status": `field_value` 存储 `HEX(status)`
+2. "comm_status": `field_value` 存储 `HEX(comm_status)`
+3. "lamp_status": `field_value` 存储 `HEX(lamp_status)`
 
 ## device_status_history*
 
@@ -249,6 +249,13 @@ StarRiver Config 在此记录用户录入的设备初始信息。
 | --- | --- | --- | --- |
 |field_max| double|汇总时段内最大采样值|浮点数可能无法精确表示整数采样|
 |field_min| double|汇总时段内最小采样值|浮点数可能无法精确表示整数采样|
+
+目前对 `device_status` 的如下状态进行采样（亦即 `field` 的合法取值）：
+
+1. "output_amp"
+2. "output_volt"
+3. "active_power"
+4. "brightness"
 
 有三个event更新这些表：
 

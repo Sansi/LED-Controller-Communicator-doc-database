@@ -171,17 +171,19 @@ time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
 
-目前记录如下两个状态的变化，由 \texttt{controller\_status} 表中名为
-\texttt{log\_controller\_changes} 的trigger执行：
+目前记录如下两个状态（亦即 \texttt{field} 的合法取值）的变化，由
+\texttt{controller\_status} 表中名为 \texttt{log\_controller\_changes}
+的trigger执行：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  comm\_state: \texttt{field\_value} 存储
+  ``comm\_state'': \texttt{field\_value} 存储
   \texttt{CAST(comm\_state AS char)}
 \item
-  status\_code: \texttt{field\_value} 存储 \texttt{HEX(status\_code)}
+  ``status\_code'': \texttt{field\_value} 存储
+  \texttt{HEX(status\_code)}
 \end{enumerate}
 
 每月执行的事件 \texttt{Delete outdated status history}
@@ -348,17 +350,20 @@ time & timest\_amp & 修改时间 & PK3\tabularnewline
 \bottomrule
 \end{longtabu}
 
-目前记录如下三个状态的变化，由device\_status表中名为log\_changes的trigger执行：
+目前记录如下三个状态（亦即 \texttt{field}
+的合法取值）的变化，由device\_status表中名为log\_changes的trigger执行：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  status: \texttt{field\_value} 存储 \texttt{HEX(status)}
+  ``status'': \texttt{field\_value} 存储 \texttt{HEX(status)}
 \item
-  comm\_status: \texttt{field\_value} 存储 \texttt{HEX(comm\_status)}
+  ``comm\_status'': \texttt{field\_value} 存储
+  \texttt{HEX(comm\_status)}
 \item
-  lamp\_status: \texttt{field\_value} 存储 \texttt{HEX(lamp\_status)}
+  ``lamp\_status'': \texttt{field\_value} 存储
+  \texttt{HEX(lamp\_status)}
 \end{enumerate}
 
 \subsection{device\_status\_history*}\label{deviceux5fstatusux5fhistory}
@@ -414,6 +419,22 @@ field\_min & double & 汇总时段内最小采样值 &
 浮点数可能无法精确表示整数采样\tabularnewline
 \bottomrule
 \end{longtabu}
+
+目前对 \texttt{device\_status} 的如下状态进行采样（亦即 \texttt{field}
+的合法取值）：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  ``output\_amp''
+\item
+  ``output\_volt''
+\item
+  ``active\_power''
+\item
+  ``brightness''
+\end{enumerate}
 
 有三个event更新这些表：
 
