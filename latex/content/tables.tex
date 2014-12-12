@@ -500,7 +500,8 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 字段名 & 类型 & 含义 & 备注\tabularnewline
 \midrule
 \endhead
-id & tinyint unsigned & &\tabularnewline
+id & tinyint unsigned & &
+id=0保留给GIS地图，不用插入记录。静态图的id从1开始。\tabularnewline
 name & varchar(64) & &\tabularnewline
 display\_order & tinyint unsigned & 前台程序界面上显示地图的顺序 &
 不宜重复\tabularnewline
@@ -524,9 +525,18 @@ device\_id & int unsigned & device.id or controller.id &
 PK3\tabularnewline
 pos\_x & int & 设备在地图上的横坐标 &\tabularnewline
 pos\_y & int & 设备在地图上的纵坐标 &\tabularnewline
+latitude & double & 矢量地图时的纬度 &\tabularnewline
+longitude & int & 矢量地图时的经度 &\tabularnewline
 icon\_id & tinyint unsigned & & 对应的图标文件必须存在\tabularnewline
 \bottomrule
 \end{longtabu}
+
+\begin{quote}
+frontend\_map\_bmp\_id为0表示GIS地图，这条记录的 \texttt{latitude} 和
+\texttt{longitude}
+有意义。大于0的表示frontend\_map\_bmp中定义的静态地图， \texttt{pos\_x}
+和 \texttt{pos\_y} 有意义。
+\end{quote}
 
 \subsection{frontend\_group}\label{frontendux5fgroup}
 

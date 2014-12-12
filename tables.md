@@ -298,7 +298,7 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 
 | 字段名|类型|含义|备注|
 | --- | --- | --- | --- |
-|id|tinyint unsigned| ||
+|id|tinyint unsigned| |id=0保留给GIS地图，不用插入记录。静态图的id从1开始。|
 |name|varchar(64)|||
 |display_order|tinyint unsigned |前台程序界面上显示地图的顺序|不宜重复|
 
@@ -313,7 +313,11 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |device_id|int unsigned|device.id or controller.id| PK3|
 |pos_x|int |设备在地图上的横坐标| |
 |pos_y|int |设备在地图上的纵坐标| |
+|latitude|double |矢量地图时的纬度| |
+|longitude|int |矢量地图时的经度| |
 |icon_id|tinyint unsigned||对应的图标文件必须存在|
+
+>frontend_map_bmp_id为0表示GIS地图，这条记录的 `latitude` 和 `longitude` 有意义。大于0的表示frontend_map_bmp中定义的静态地图， `pos_x` 和 `pos_y` 有意义。
 
 ## frontend_group
 
