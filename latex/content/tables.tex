@@ -249,6 +249,9 @@ note & varchar(450) & 备注，比如位置信息 & UTF8\tabularnewline
 controller\_addr & binary(8) & & PK1\tabularnewline
 device\_addr & binary(8) & & PK2\tabularnewline
 mode & int unsigned & & 0: manual, 1: auto, 2: schedule\tabularnewline
+policy\_schedule\_id & int unsigned & & When \texttt{mode} is not 0,
+this field stores either \texttt{auto\_policy.id} or
+\texttt{time\_schedule.id}\tabularnewline
 \bottomrule
 \end{longtabu}
 

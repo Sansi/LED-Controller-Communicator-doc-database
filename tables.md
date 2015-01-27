@@ -147,6 +147,7 @@
 |controller_addr|binary(8)||PK1|
 |device_addr|binary(8)||PK2|
 |mode|int unsigned ||0: manual, 1: auto, 2: schedule |
+|policy_schedule_id| int unsigned | |When `mode` is not 0, this field stores either `auto_policy.id` or `time_schedule.id`|
 
 ## device_status
 
