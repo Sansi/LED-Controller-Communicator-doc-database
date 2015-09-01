@@ -442,12 +442,12 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 
 |字段名|类型|含义|备注|
 | --- | --- | --- | --- |
-|id|bigint unsigned| 自增ID|当流水号|
-|time|datetime|||
+|id|bigint unsigned| 自增ID|当流水号 PK1|
+|time|datetime|| PK2|
 |user_id|int unsigned |user.id ||
 |cmd |smallint unsigned|操作类型||
 |param|varchar(1024) |操作的参数| |
-|hash| varchar(40)| 命令的MD5散列值|md5(time + user_id + cmd + param) 作为查询条件供前段程序在 `task_done` 中查询任务完成状态|
+|hash| varchar(40)| 命令的MD5散列值|md5(time + user_id + cmd + param) 作为查询条件供前段程序在 `task_done` 中查询任务完成状态 PK3|
 
 ## task_done
 
