@@ -449,8 +449,6 @@ MediumBlob可以存储16MB大小的固件，MySQL服务器也已经设置：
 |param|varchar(1024) |操作的参数| |
 |hash| varchar(40)| 命令的MD5散列值|md5(time + user_id + cmd + param) 作为查询条件供前段程序在 `task_done` 中查询任务完成状态|
 
-> **注意**：这个表使用MyISAM引擎存储。自增的id字段如果使用InnoDB存储，计数器在内存里，数据库服务器一旦重启，又将从1开始计数，完成任务后向 `task_done` 中插入记录会引发冲突导致失败。
-
 ## task_done
 
 记录那些已完成的用户操作。
